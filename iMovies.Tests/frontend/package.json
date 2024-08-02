@@ -1,0 +1,14 @@
+{
+  "name": "imoviestests",
+  "version": "1.0.0",
+  "description": "Tests for iMovies frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Group1Revature",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
