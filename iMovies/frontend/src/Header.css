@@ -1,0 +1,71 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: grid;
+    background-color: white;
+}
+
+nav {
+
+    color: blue;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.class {
+    background-color: aqua;
+}
+
+
+.site-header-menu {
+    background-color: #000;
+    height: 93px;
+    width: 100%;
+    color: white;
+    padding: 0px 80px;
+}
+
+.site-branding {
+    height: 93px;
+    line-height: 93px;
+    float: left;
+    position: relative;
+    display: block;
+    z-index: 1;
+}
+
+.nav-menu {
+    float: right;
+    display: block;
+
+}
+
+.nav-menu-li {
+    padding: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.nav-menu-li a {
+    color: #FFF;
+}
+
+.nav-menu-li marker {
+    display: none;
+}
+
+.logo-text {
+    display: inline;
+    ;
+}
