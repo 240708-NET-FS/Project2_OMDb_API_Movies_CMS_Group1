@@ -1,8 +1,12 @@
 import React from 'react'
+import Title from '../components/Title';
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <div>test</div>
+    <Title />
+    </>
   )
 }
 
