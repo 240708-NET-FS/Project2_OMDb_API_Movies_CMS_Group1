@@ -69,3 +69,180 @@ nav {
   display: inline;
   ;
 }
+
+
+/* Login page CSS */
+
+
+.main-head {
+  width: 155px;
+  margin: 0 auto;
+}
+
+.main-head h2 {
+  text-align: center;
+  padding: 16px 20px;
+  background-color: #FEDC00;
+  font-size: 32px;
+  font-weight: 900;
+  border-radius: 8px;
+}
+
+.form-label {
+  display: block;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19px;
+  color: #111;
+  font-family: Arial, sans-serif;
+}
+
+.form-container-main {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.form-container-sub {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.form-design {
+  padding: 7px 20px 23px 20px;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.form-title-head {
+  margin-bottom: 10px !important;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+
+
+.row-input-container {
+  width: 100%;
+  display: grid;
+  margin-bottom: 15px !important;
+}
+
+.row-input-container input {
+  background-color: #fff;
+  height: 31px;
+  padding: 3px 7px;
+  line-height: normal;
+  border: 1px solid #a6a6a6;
+  border-top-color: #949494;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 1px 0 rgba(0, 0, 0, .07) inset;
+  outline: 0;
+}
+
+.row-buttun-container {
+  width: 100%;
+  border-radius: 7px;
+  background: 0 0;
+  box-shadow: none;
+  background-color: #FEDC00;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 18px;
+
+}
+
+.input-button-inner .input-button {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  opacity: .01;
+  outline: 0;
+  overflow: visible;
+  z-index: 20;
+
+}
+
+
+.a-button-text {
+  color: #000;
+}
+
+.divider-break {
+  text-align: center;
+  position: relative;
+  top: 2px;
+  padding-top: 1px;
+  margin-bottom: 0px;
+  line-height: 0;
+}
+
+.divider-break h5 {
+  line-height: 1;
+  font-size: 12px;
+  color: #767676;
+  font-weight: 400;
+  z-index: 2;
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 8px 0 7px;
+}
+
+.divider-break::after {
+  content: "";
+  width: 100%;
+  background-color: transparent;
+  display: block;
+  height: 1px;
+  border-top: 1px solid #e7e7e7;
+  position: absolute;
+  top: 50%;
+  margin-top: -1px;
+  z-index: 1;
+}
+
+.button-redirect-div {
+
+  box-shadow: 0 2px 5px 0 rgba(213, 217, 217, .5);
+  background: #FFF;
+  border-color: #D5D9D9;
+}
+
+.a-button-inner {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 29px;
+  border: 1px solid;
+  border-color: #D5D9D9;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px 0 rgba(213, 217, 217, .5);
+
+}
+
+.a-button-inner a {
+
+  color: #0F1111;
+  background-color: transparent;
+  border: 0;
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 29px;
+  margin: 0;
+  outline: 0;
+  padding: 0 10px 0 11px;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration-line: unset;
+}

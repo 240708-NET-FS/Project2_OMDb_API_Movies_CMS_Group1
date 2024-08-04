@@ -31,7 +31,7 @@ export default function Header() {
                   SignUp
                 </NavLink></li>
                 <li className="nav-menu-li"> <NavLink
-                  to="signup"
+                  to="login"
                   style={({ isActive }) => isActive ? activeStyles : null}
                 >
                   Login
