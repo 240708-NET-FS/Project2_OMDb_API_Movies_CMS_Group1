@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace OMDBProject.DTO;
 
 public class UsersDTO
