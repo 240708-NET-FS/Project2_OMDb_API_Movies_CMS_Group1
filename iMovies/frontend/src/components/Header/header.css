@@ -1,41 +1,111 @@
 @import url('../../index.css');
 
-/*Header */
+/* Header styling */
 .site-header-menu {
-    background-color: var(--palette_black);
-    height: 93px;
-    width: 100%;
-    color: var(--palette_white);
-    padding: 0px 80px;
-  }
-  
-  .site-branding {
-    height: 93px;
-    line-height: 93px;
-    float: left;
-    position: relative;
-    display: block;
-    z-index: 1;
-  }
-  
+  background-color: var(--palette_black); 
+  height: 93px; 
+  width: 100%; 
+  color: var(--palette_white); 
+  padding: 0 80px; 
+  display: flex; 
+  justify-content: space-between; /* Space out items to the edges */
+  align-items: center; /* Vertically align items in the center */
+  position: sticky; /* Keep the header fixed at the top on scroll */
+  top: 0; /* Stick the header to the top */
+  z-index: 1000; /* Ensure header stays on top of other elements */
+  box-shadow: 0 0.5px 4px var(--palette_white); /* Add a shadow below the header */
+}
+
+.site-branding {
+  display: flex; 
+  align-items: center; /* Vertically center items */
+}
+
+/* Styling for the clickable logo link */
+.logo-link {
+  display: flex; /* Align logo and text in a row */
+  align-items: center; /* Vertically center items */
+  text-decoration: none; /* Remove underline from link */
+  color: var(--palette_white);
+}
+
+/* Styling for the logo text */
+.logo-text {
+  color: var(--palette_white); 
+}
+
+/* Styling for the logo image */
+.logo-image {
+  height: 40px; 
+  margin-right: 10px; /* Space between the logo image and text */
+}
+
+/* Navigation menu styling */
+.nav-menu {
+  display: flex; 
+  align-items: center; /* Vertically center items */
+  list-style-type: none; /* Remove default bullet points */
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transitions for opening and closing */
+}
+
+/* Styling for individual navigation menu items */
+.nav-menu-li {
+  margin: 0 10px; 
+}
+
+/* Styling for navigation links (buttons) */
+.nav-menu-li a {
+  color: var(--palette_white); 
+  background-color: var(--palette_purple); 
+  padding: 10px 20px; 
+  border-radius: 5px; /* Rounded corners for the links */
+  text-decoration: none; /* Remove underline from links */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
+  display: block; /* Make the link block level for padding to take effect */
+  font-weight: bold; 
+}
+
+
+.nav-menu-li a:hover {
+  background-color: var(--palette_orange); /* Change background color on hover */
+  color: var(--palette_black); /* Change text color on hover */
+}
+
+/* Hamburger menu button styling */
+.hamburger {
+  display: none; /* Hide by default */
+  font-size: 30px; 
+  background: none; 
+  border: none; 
+  color: var(--palette_white); 
+  cursor: pointer; 
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 768px) {
   .nav-menu {
-    float: right;
-    display: block;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    display: none; /* Hide the menu by default on small screens */
+    flex-direction: column; /* Stack menu items vertically */
+    position: absolute; 
+    top: 93px; /* Position below the header */
+    right: 0; 
+    background-color: var(--palette_black); 
+    width: 100%; 
+    box-shadow: 0 0.5px 4px var(--palette_white); /* Add shadow below the dropdown */
   }
-  
+
+  .nav-menu.open {
+    display: flex; /* Display menu items when open */
+    opacity: 1;
+  }
+
   .nav-menu-li {
-    padding: 20px;
-    display: inline-block;
-    position: relative;
+    display: block; /* Display each item as a block */
+    text-align: center; 
+    margin: 15px 0; /* Vertical space between items */
   }
-  
-  .nav-menu-li a {
-    color: var(--palette_white);
+
+  .hamburger {
+    display: block; 
   }
-  
-  .logo-text {
-    display: inline;
-    ;
-  }
+}
