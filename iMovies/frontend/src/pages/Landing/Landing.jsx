@@ -33,12 +33,6 @@ const Landing = () => {
     <div>
         <h1>Test</h1>
         <div>
-        {
-            myMovies.map((movie)=> {
-                <MovieCard name={movie.name} image={movie.image}
-                    genre={movie.genre} rating={movie.rating}
-                />
-            })}
         </div>
     </div>
 
