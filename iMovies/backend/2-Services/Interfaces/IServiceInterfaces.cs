@@ -17,7 +17,7 @@ public interface IUserMoviesService
 
 }
 
-public interface IUsersService
+public interface IUserService
 {
 
 }
