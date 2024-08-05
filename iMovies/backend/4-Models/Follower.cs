@@ -10,18 +10,18 @@ namespace OMDbProject.Models;
         public int FollowerId { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public int UserId { get; set; } //UserId of the User being followed
 
         [Required]
-        public int FollowerUserId { get; set; }
+        public int FollowerUserId { get; set; } //UserId of the Follower
 
         public DateTime CreatedAt { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User User { get; set; } //Navigation property User User uses UserId to create a reference to the user being followed.
 
         [ForeignKey(nameof(FollowerUserId))]
-        public User FollowerUser { get; set; }
+        public User FollowerUser { get; set; } //Navigation property User FollowerUser uses FollowerUserId to create a reference to the user who is doing the following
     }
 

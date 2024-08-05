@@ -21,7 +21,7 @@ namespace OMDbProject.Repositories;
         public async Task<User> GetUserByUsernameAsync(string username)
         {
             return await _context.Users
-                .FirstOrDefaultAsync(u => u.Username == username);
+                .FirstOrDefaultAsync(u => u.UserName == username);
         }
 
         public async Task AddUserAsync(User user)
