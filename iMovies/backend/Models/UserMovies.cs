@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace OMDBProject.DTO;
 
 public class UserMovies
 {
+    [Key]
     public int UserMovieID {get;set;}
     //One-To-Many
     public int UserID {get;set;}
