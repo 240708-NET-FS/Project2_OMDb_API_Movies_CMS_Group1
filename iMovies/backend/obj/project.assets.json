@@ -433,11 +433,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
+      "projectPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj",
       "packagesPath": "C:\\Users\\owusu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\obj\\",
+      "outputPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\owusu\\AppData\\Roaming\\NuGet\\NuGet.Config"
