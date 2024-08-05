@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace OMDBProject.DTO;
+namespace OMDbProject.Models.DTOs
 
 public class UsersDTO
 {
