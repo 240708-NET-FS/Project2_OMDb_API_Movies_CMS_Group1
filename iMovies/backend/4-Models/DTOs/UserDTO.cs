@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace OMDbProject.Models.DTOs
+namespace OMDbProject.Models.DTOs;
 
-public class UsersDTO
+public class UserDTO
 {
     [Key]
     public int UserID {get;set;}

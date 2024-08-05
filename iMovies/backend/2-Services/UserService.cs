@@ -1,5 +1,9 @@
+using Microsoft.AspNetCore.Mvc;
 using OMDbProject.Models;
+using OMDbProject.Models.DTOs;
+using OMDbProject.Services.Interfaces;
 using OMDbProject.Repositories;
+using OMDbProject.Repositories.Interfaces;
 using System.Threading.Tasks;
 using System;
 

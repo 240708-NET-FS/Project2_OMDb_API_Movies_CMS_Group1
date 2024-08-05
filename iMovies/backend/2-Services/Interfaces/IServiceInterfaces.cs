@@ -1,23 +1,19 @@
-using OMDBProject.DTO;
+using OMDbProject.Models.DTOs;
 
-namespace OMDBProject.Services;
+namespace OMDbProject.Services.Interfaces;
 
-public interface IFollowersService
+public interface IFollowerService
 {
 
 }
 
-public interface ILikesService
+public interface ILikeService
 {
 
 }
 
-public interface IUserMoviesService
+public interface IUserMovieService
 {
 
 }
 
-public interface IUserService
-{
-
-}

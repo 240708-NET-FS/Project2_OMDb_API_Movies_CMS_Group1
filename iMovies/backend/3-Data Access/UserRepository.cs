@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OMDbProject.Models;
+using OMDbProject.Repositories.Interfaces;
+
 using System.Threading.Tasks;
 
 namespace OMDbProject.Repositories;
@@ -18,7 +20,7 @@ namespace OMDbProject.Repositories;
             return await _context.Users.FindAsync(userId);
         }
 
-        public async Task<User> GetUserByUsernameAsync(string username)
+        public async Task<User> GetUserByUserNameAsync(string username)
         {
             return await _context.Users
                 .FirstOrDefaultAsync(u => u.UserName == username);

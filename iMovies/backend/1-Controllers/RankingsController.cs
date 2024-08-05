@@ -1,17 +1,23 @@
+using Microsoft.AspNetCore.Mvc;
+using OMDbProject.Services.Interfaces;
+using OMDbProject.Models.DTOs;
+using OMDbProject.Services;
+
 [ApiController]
 [Route("api/[controller]")]
 public class RankingsController : ControllerBase
 {
-    private readonly RankingsService _rankingsService;
+    private readonly RankingService _rankingService;
 
-    public RankingsController(RankingsService rankingsService)
+    public RankingsController(RankingService rankingService)
     {
-        _rankingsService = rankingsService;
+        _rankingService = rankingService;
     }
 
     [HttpGet("top")]
     public async Task<IActionResult> GetTopRankedMovies()
     {
-        
+          return Ok();
+    await Task.CompletedTask; // Placeholder for await
     }
 }

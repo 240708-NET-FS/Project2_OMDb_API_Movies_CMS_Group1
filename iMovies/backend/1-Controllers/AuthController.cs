@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using OMDbProject.Models;
 using OMDbProject.Services;
 using OMDbProject.Models.DTOs;
+using System.Threading.Tasks;
 
 namespace OMDbProject.Controllers
 {
@@ -17,15 +18,45 @@ namespace OMDbProject.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginDTO loginDto)
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            return Ok();
+            // Validate the input
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                // Authenticate and get JWT
+                var token = await _authService.LoginAsync(loginDTO);
+
+                // Return the JWT as a response
+                return Ok(new { Token = token });
+            }
+            catch (Exception ex)
+            {
+                // Handle any authentication errors
+                return Unauthorized(new { Message = ex.Message });
+            }
         }
 
         [HttpPost("logout")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            return Ok();
+             try
+            {
+                // Invalidate the current user's JWT
+                await _authService.LogoutAsync();
+
+                // Return success
+                return Ok(new { Message = "Logged out successfully" });
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors during logout
+                return BadRequest(new { Message = ex.Message });
+            }
         }
     }
 }
