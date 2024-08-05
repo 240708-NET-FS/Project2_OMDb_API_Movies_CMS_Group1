@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OMDbProject.Models;
-using OMDbProject.Services;
+using OMDbProject.Services.Interfaces;
 using OMDbProject.Models.DTOs;
 using System.Threading.Tasks;
 
@@ -10,9 +10,9 @@ namespace OMDbProject.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
 
-        public AuthController(AuthService authService)
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
         }
