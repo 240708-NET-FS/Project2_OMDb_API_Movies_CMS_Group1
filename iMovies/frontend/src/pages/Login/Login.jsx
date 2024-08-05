@@ -1,18 +1,16 @@
 import React from 'react';
 import './login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-   
-    
-   
     return (
         <div>
-            <div className='main-head'><h2>OMDb</h2></div>
+            <div className='main-head'><h2>iMovies</h2></div>
 
             <div className="form-container-main">
                 <div className="form-container-sub">
                     <div className="form-design">
-                        <h1 class="form-title-head">
+                        <h1 className="form-title-head">
                             Sign in
                         </h1>
                         <form>
@@ -27,21 +25,23 @@ const Login = () => {
                             </div>
 
                             <div className="row-buttun-container">
-                                <span class="input-button-inner">
+                                <span className="input-button-inner">
                                     <input type="submit" className='input-button' />
-                                    <span class="a-button-text">
+                                    <span className="a-button-text">
                                         Sign in
                                     </span>
                                 </span>
                             </div>
-                            <div class="divider-break"><h5>New to OMDb?</h5></div>
-                            <span id="" class="button-redirect-div"><span class="a-button-inner">
-                                <a id="createAccountSubmit" href="#">
-                                    Create your OMDb account
-                                </a></span></span>
+                            <div className="divider-break"><h5>New to iMovies?</h5></div>
+                            <span id="" className="button-redirect-div">
+                                <span className="a-button-inner">
+                                    <Link id="createAccountSubmit" to="/signup">
+                                        Create your iMovies account
+                                    </Link>
+                                </span>
+                            </span>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>

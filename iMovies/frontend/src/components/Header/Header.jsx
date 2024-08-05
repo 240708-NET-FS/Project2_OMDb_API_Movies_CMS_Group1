@@ -33,7 +33,7 @@ export default function Header() {
             </NavLink>
           </li>
           <li className="nav-menu-li">
-            <NavLink to="signup" onClick={closeMenu}>
+            <NavLink to="login" onClick={closeMenu}>
               Login
             </NavLink>
           </li>
