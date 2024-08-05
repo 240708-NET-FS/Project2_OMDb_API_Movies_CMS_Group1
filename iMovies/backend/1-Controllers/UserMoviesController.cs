@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+using OMDbProject.Models.DTOs;
+using OMDBProject.Services;
+
 [ApiController]
 [Route("api/[controller]")]
 public class UserMoviesController : ControllerBase
@@ -10,7 +14,7 @@ public class UserMoviesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddUserMovie(UserMovieDto userMovieDto)
+    public async Task<IActionResult> AddUserMovie(UserMovieDTO userMovieDto)
     {
        
     }
@@ -28,7 +32,7 @@ public class UserMoviesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUserMovie(int id, UserMovieDto userMovieDto)
+    public async Task<IActionResult> UpdateUserMovie(int id, UserMovieDTO userMovieDto)
     {
       
     }

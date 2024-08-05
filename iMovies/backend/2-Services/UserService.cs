@@ -1,5 +1,6 @@
 using OMDbProject.Models;
 using OMDbProject.Repositories;
+using OMDbProject.Models.DTOs;
 using System.Threading.Tasks;
 using System;
 

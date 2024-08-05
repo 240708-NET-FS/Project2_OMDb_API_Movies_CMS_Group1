@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
+using OMDbProject.Models.DTOs;
+using OMDBProject.Services;
+
+
 [ApiController]
 [Route("api/[controller]")]
 public class FollowersController : ControllerBase
@@ -10,7 +15,7 @@ public class FollowersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddFollower(FollowerDto followerDto)
+    public async Task<IActionResult> AddFollower(FollowerDTO followerDto)
     {
      
     }

@@ -1,4 +1,4 @@
-using OMDBProject.DTO;
+using OMDbProject.Models.DTOs;
 
 namespace OMDBProject.Services;
 

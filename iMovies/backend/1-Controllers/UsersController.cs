@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OMDbProject.Models;
 using OMDbProject.Services;
+using OMDbProject.Models.DTOs;
 using System.Threading.Tasks;
 
 namespace OMDbProject.Controllers;

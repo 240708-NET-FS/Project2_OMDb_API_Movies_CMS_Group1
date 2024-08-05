@@ -1,4 +1,6 @@
-[ApiController]
+using Microsoft.AspNetCore.Mvc;
+using OMDbProject.Models.DTOs;
+using OMDBProject.Services;
 [Route("api/[controller]")]
 public class LikesController : ControllerBase
 {
@@ -10,7 +12,7 @@ public class LikesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddLike(LikeDto likeDto)
+    public async Task<IActionResult> AddLike(LikeDTO likeDto)
     {
        
     }
