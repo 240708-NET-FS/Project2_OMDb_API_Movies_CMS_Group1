@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj": {}
+    "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj": {
+    "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\owusu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\obj\\",
+        "outputPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\project2\\Project2\\iMovies\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\owusu\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,16 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"

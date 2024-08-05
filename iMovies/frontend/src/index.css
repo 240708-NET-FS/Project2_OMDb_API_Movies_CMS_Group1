@@ -1,0 +1,28 @@
+/* global styles*/
+:root {
+  --palette_black: #070707;
+  --palette_white: #FFFFFF;
+  --palette_purple: #5E00FF;
+  --palette_orange: #FF6700;
+  --palette_yellow: #FEDC00;
+}
+
+/* Fonts */
+@font-face {
+  font-family: 'LimeLight';
+  src: url('./assets/fonts/Limelight/Limelight-Regular.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+
