@@ -31,9 +31,9 @@ namespace OMDbProject.Models;
 
         // Navigation properties
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public User User { get; set; } //User related to the UserMovie, based on the UserId
         
-        public ICollection<Like> Likes { get; set; }
+        public ICollection<Like> Likes { get; set; } //collection of Like entities related to the UserMovie, based on UserMovieId
 
 
     }
