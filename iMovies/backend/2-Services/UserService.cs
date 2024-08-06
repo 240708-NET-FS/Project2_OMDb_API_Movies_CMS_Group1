@@ -43,7 +43,7 @@ namespace OMDbProject.Services;
 
         private string HashPassword(string password)
         {
-            string hashedPassword = "";
+            string hashedPassword = "testing hashed password";
             // Password hashing logic here
             return hashedPassword; // return hashed password
         }
