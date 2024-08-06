@@ -4,6 +4,9 @@ using OMDbProject.Models.DTOs;
 using OMDbProject.Services.Interfaces;
 using OMDbProject.Repositories;
 using OMDbProject.Repositories.Interfaces;
+using System.Security.Cryptography;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System;
 
@@ -27,31 +30,55 @@ namespace OMDbProject.Services;
                 throw new Exception("Username is already taken.");
             }
 
+
+            // Generate salt and hash the password
+            var salt = GenerateSalt();
+            var hashedPassword = HashPassword(userRegistrationDTO.Password, salt);
+
+
             var user = new User
             {
                 FirstName = userRegistrationDTO.FirstName,
                 LastName = userRegistrationDTO.LastName,
                 UserName = userRegistrationDTO.UserName,
-                PasswordHash = HashPassword(userRegistrationDTO.Password),
+                PasswordHash = hashedPassword,
+                Salt = salt,
                 CreatedAt = DateTime.UtcNow
             };
 
             await _userRepository.AddUserAsync(user);
-
-            return user;
+            return new User {FirstName = user.FirstName, LastName = user.LastName};
         }
 
-        private string HashPassword(string password)
-        {
-            string hashedPassword = "testing hashed password";
-            // Password hashing logic here
-            return hashedPassword; // return hashed password
-        }
 
         public async Task<User> GetUserByIdAsync(int id)
         {
             return await _userRepository.GetUserByIdAsync(id);
         }
+
+
+        //Methods for password hashing: generate salt and then hash
+
+         private string GenerateSalt()
+        {
+            byte[] saltBytes = new byte[16];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(saltBytes);
+            }
+            return Convert.ToBase64String(saltBytes);
+        }
+
+    
+    private string HashPassword(string password, string salt)
+    {
+        byte[] saltBytes = Convert.FromBase64String(salt);
+        using var hmac = new HMACSHA512(saltBytes);
+        byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+        return Convert.ToBase64String(hashBytes);
     }
+
+
+}
 
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,7 @@ namespace backend.Migrations
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Salt = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

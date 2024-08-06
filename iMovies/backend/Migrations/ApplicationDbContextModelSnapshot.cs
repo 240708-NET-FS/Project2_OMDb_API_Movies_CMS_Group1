@@ -100,6 +100,10 @@ namespace backend.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)

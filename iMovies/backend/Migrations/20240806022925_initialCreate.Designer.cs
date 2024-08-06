@@ -12,8 +12,8 @@ using OMDbProject.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806012343_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240806022925_initialCreate")]
+    partial class initialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,6 +102,10 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()

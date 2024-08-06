@@ -28,6 +28,7 @@ namespace OMDbProject.Models;
                 entity.HasKey(e => e.UserId);
                 entity.Property(e => e.UserName).IsRequired();
                 entity.Property(e => e.PasswordHash).IsRequired();
+                entity.Property(e => e.Salt).IsRequired(); //Make Salt required
             });
 
             // Configurations for UserMovie entity

@@ -8,6 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Bind JwtSettings from configuration
+//GetSection() argument must match appsettings.json file
+//Configure<TOptions>() automatically registers the settings object in the DI container as a singleton.
+//When using IOptions<T> or IOptionsMonitor<T>, you do not need AddSingleton:
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
+
 // Add services to the container.
 builder.Services.AddControllers();
 

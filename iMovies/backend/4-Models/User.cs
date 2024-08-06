@@ -24,6 +24,8 @@ namespace OMDbProject.Models;
         [StringLength(255)]
         public string PasswordHash { get; set; }
 
+        public string Salt { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
          // Navigation properties
