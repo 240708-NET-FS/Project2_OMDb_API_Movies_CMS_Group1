@@ -29,11 +29,10 @@ namespace OMDbProject.Controllers
             try
             {
                 // Authenticate and get JWT
-                var token = await _authService.LoginAsync(loginDTO);
-                Console.WriteLine("token: "+ token);
+                var userResponseDTO = await _authService.LoginAsync(loginDTO);                
 
-                // Return the JWT as a response
-                return Ok(new { Token = token });
+                // Return the JWT inside a user response DTO
+                return Ok(userResponseDTO);
             }
             catch (Exception ex)
             {

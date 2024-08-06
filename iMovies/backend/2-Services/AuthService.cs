@@ -25,7 +25,7 @@ namespace OMDbProject.Services;
         }
 
 
-public async Task<string> LoginAsync(LoginDTO loginDTO)
+public async Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO)
 {
     // Retrieve the user from the database
     var user = await _userRepository.GetUserByUserNameAsync(loginDTO.UserName);
@@ -51,8 +51,18 @@ public async Task<string> LoginAsync(LoginDTO loginDTO)
         throw new UnauthorizedAccessException("Invalid username or password.");
     }
 
-    // Generate and return JWT token if password is correct
-    return GenerateJwtToken(user);
+    //Generate and return JWT token if password is correct
+     var JwtToken = GenerateJwtToken(user);
+
+     return new UserResponseDTO
+        {
+            UserId = user.UserId, 
+            UserName = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            CreatedAt = user.CreatedAt,
+            Token = JwtToken 
+        };
 }
 
 
