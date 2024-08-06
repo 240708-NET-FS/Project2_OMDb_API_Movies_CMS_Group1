@@ -27,5 +27,29 @@ html, body{
   box-sizing: border-box;
 }
 
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--palette_black);
+  overflow: hidden;
+}
+
+.button {
+  color: var(--palette_white);
+  background-color: var(--palette_purple);
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: var(--palette_orange);
+  color: var(--palette_black);
+}
+
 
 

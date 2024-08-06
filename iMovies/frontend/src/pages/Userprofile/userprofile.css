@@ -130,3 +130,7 @@
     background-color: var(--palette_yellow);
     margin-top: 10px;
 }
+
+.loading{
+    color: white;
+}

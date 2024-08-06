@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './userprofile.css';
+import Dashboard from '../../components/Dashboard/DashBoard';
 
 const mockUserData = {
   name: "John Doe",
@@ -108,12 +109,19 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <div>Loading...</div>;
+    return(
+    <div className='wrapper'>
+      <Dashboard />
+      <div className='loading'>Loading...</div>
+    </div>
+    );
   }
 
   const isCurrentUserProfile = user.name === currentUser;
 
   return (
+    <div className='wrapper'>
+    <Dashboard />
     <div className="user-profile">
       <div className="user-info">
         <h2>{user.name}'s Profile</h2>
@@ -165,6 +173,7 @@ const UserProfile = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ export default function Header() {
       <div className="site-header-menu">
       <div className="site-branding">
           <NavLink to="/" className="logo-link">
-            <img src="../../public/iMoviesLogo.png" alt="Logo" className="logo-image" />
+            <img src="/iMoviesLogo.png" alt="Logo" className="logo-image" />
             <h2 className="logo-text">iMovies</h2>
           </NavLink>
         </div>

@@ -8,72 +8,67 @@
   color: var(--palette_white); 
   padding: 0 80px; 
   display: flex; 
-  justify-content: space-between; /* Space out items to the edges */
-  align-items: center; /* Vertically align items in the center */
-  position: sticky; /* Keep the header fixed at the top on scroll */
-  top: 0; /* Stick the header to the top */
-  z-index: 1000; /* Ensure header stays on top of other elements */
-  box-shadow: 0 0.5px 4px var(--palette_white); /* Add a shadow below the header */
+  justify-content: space-between; 
+  align-items: center; 
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; 
+  box-shadow: 0 0.5px 4px var(--palette_white);
 }
 
 .site-branding {
   display: flex; 
-  align-items: center; /* Vertically center items */
+  align-items: center; 
 }
 
-/* Styling for the clickable logo link */
+
 .logo-link {
-  display: flex; /* Align logo and text in a row */
-  align-items: center; /* Vertically center items */
-  text-decoration: none; /* Remove underline from link */
+  display: flex;
+  align-items: center; 
+  text-decoration: none; 
   color: var(--palette_white);
 }
 
-/* Styling for the logo text */
 .logo-text {
   color: var(--palette_white); 
 }
 
-/* Styling for the logo image */
 .logo-image {
   height: 40px; 
-  margin-right: 10px; /* Space between the logo image and text */
+  margin-right: 10px; 
 }
 
-/* Navigation menu styling */
 .nav-menu {
   display: flex; 
-  align-items: center; /* Vertically center items */
-  list-style-type: none; /* Remove default bullet points */
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transitions for opening and closing */
+  align-items: center; 
+  list-style-type: none; 
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out; 
 }
 
-/* Styling for individual navigation menu items */
 .nav-menu-li {
   margin: 0 10px; 
 }
 
-/* Styling for navigation links (buttons) */
 .nav-menu-li a {
   color: var(--palette_white); 
   background-color: var(--palette_purple); 
   padding: 10px 20px; 
-  border-radius: 5px; /* Rounded corners for the links */
-  text-decoration: none; /* Remove underline from links */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
-  display: block; /* Make the link block level for padding to take effect */
+  border-radius: 5px; 
+  text-decoration: none; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+  display: block; 
   font-weight: bold; 
 }
 
 
 .nav-menu-li a:hover {
-  background-color: var(--palette_orange); /* Change background color on hover */
-  color: var(--palette_black); /* Change text color on hover */
+  background-color: var(--palette_orange);
+  color: var(--palette_black); 
 }
 
-/* Hamburger menu button styling */
+
 .hamburger {
-  display: none; /* Hide by default */
+  display: none; 
   font-size: 30px; 
   background: none; 
   border: none; 
@@ -81,28 +76,28 @@
   cursor: pointer; 
 }
 
-/* Responsive styles for mobile screens */
+
 @media (max-width: 768px) {
   .nav-menu {
-    display: none; /* Hide the menu by default on small screens */
-    flex-direction: column; /* Stack menu items vertically */
+    display: none; 
+    flex-direction: column; 
     position: absolute; 
-    top: 93px; /* Position below the header */
+    top: 93px; 
     right: 0; 
     background-color: var(--palette_black); 
     width: 100%; 
-    box-shadow: 0 0.5px 4px var(--palette_white); /* Add shadow below the dropdown */
+    box-shadow: 0 0.5px 4px var(--palette_white); 
   }
 
   .nav-menu.open {
-    display: flex; /* Display menu items when open */
+    display: flex; 
     opacity: 1;
   }
 
   .nav-menu-li {
-    display: block; /* Display each item as a block */
+    display: block; 
     text-align: center; 
-    margin: 15px 0; /* Vertical space between items */
+    margin: 15px 0; 
   }
 
   .hamburger {

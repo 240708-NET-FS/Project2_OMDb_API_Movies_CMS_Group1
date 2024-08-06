@@ -1,0 +1,61 @@
+/* feed.css */
+
+.main-dashboard {
+  background-color: var(--palette_black);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.top-movies {
+  margin-bottom: 20px;
+}
+
+.top-movies h3 {
+  font-size: 24px;
+  color: var(--palette_white);
+  margin-bottom: 10px;
+}
+
+.top-movie-list {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+}
+
+.top-movie-card {
+  flex: 0 0 auto;
+  width: 200px;
+  background-color: var(--palette_white);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+}
+
+.top-movie-poster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.top-movie-details {
+  padding: 10px;
+  text-align: left;
+}
+
+.top-movie-details h4 {
+  margin: 10px 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.top-movie-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.top-movie-details .bold {
+  font-weight: bold;
+}
