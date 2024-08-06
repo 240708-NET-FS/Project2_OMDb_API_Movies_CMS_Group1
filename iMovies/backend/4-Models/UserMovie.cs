@@ -19,7 +19,7 @@ namespace OMDbProject.Models;
 
         public DateTime? WatchedOn { get; set; }
 
-        //public decimal? UserRating { get; set; }
+        public decimal? UserRating { get; set; }
 
         public string UserReview { get; set; }
 

@@ -35,6 +35,12 @@ namespace OMDbProject.Models;
             modelBuilder.Entity<UserMovie>(entity =>
             {
                 entity.HasKey(e => e.UserMovieId);
+
+                // Specify precision and scale for UserRating
+                entity.Property(e => e.UserRating)
+               .HasColumnType("decimal(2, 1)"); // Precision 2, Scale 1
+
+                //Foreign key configuration
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.UserMovies)
                       .HasForeignKey(e => e.UserId)
