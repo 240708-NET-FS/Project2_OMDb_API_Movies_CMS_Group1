@@ -10,9 +10,9 @@ namespace OMDbProject.Controllers;
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
-    private readonly UserService _userService;
+    private readonly IUserService _userService;
 
-    public UsersController(UserService userService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
     }
@@ -29,8 +29,8 @@ public class UsersController : ControllerBase
 
             try
             {
-                var user = await _userService.RegisterUserAsync(userRegistrationDTO);
-                return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, user);
+                var user = await _userService.RegisterUserAsync(userRegistrationDTO); //create user
+                return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, user); //return created user
             }
             catch (Exception ex)
             {
