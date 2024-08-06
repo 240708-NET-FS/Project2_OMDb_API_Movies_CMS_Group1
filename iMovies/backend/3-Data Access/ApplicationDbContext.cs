@@ -47,7 +47,7 @@ namespace OMDbProject.Models;
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.Likes)
                       .HasForeignKey(e => e.UserId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                      .OnDelete(DeleteBehavior.Restrict); //No cascade delete
                 entity.HasOne(e => e.UserMovie)
                       .WithMany(um => um.Likes)
                       .HasForeignKey(e => e.UserMovieId)
@@ -61,11 +61,11 @@ namespace OMDbProject.Models;
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.Followers)
                       .HasForeignKey(e => e.UserId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                      .OnDelete(DeleteBehavior.Restrict); //No cascade delete
                 entity.HasOne(e => e.FollowerUser)
                       .WithMany(u => u.Following)
                       .HasForeignKey(e => e.FollowerUserId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                      .OnDelete(DeleteBehavior.Restrict); //No cascade delete
             });
 
             // If using a view for movie ranking
