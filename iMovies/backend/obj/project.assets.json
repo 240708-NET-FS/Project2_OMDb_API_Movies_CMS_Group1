@@ -428,19 +428,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\owusu\\.nuget\\packages\\": {}
+    "/Users/aser/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
+      "projectUniqueName": "/Users/aser/Documents/revature/Project2_OMDb_API_Movies_CMS_Group1/iMovies/backend/backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\backend.csproj",
-      "packagesPath": "C:\\Users\\owusu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\owusu\\OneDrive\\Desktop\\Project2\\iMovies\\backend\\obj\\",
+      "projectPath": "/Users/aser/Documents/revature/Project2_OMDb_API_Movies_CMS_Group1/iMovies/backend/backend.csproj",
+      "packagesPath": "/Users/aser/.nuget/packages/",
+      "outputPath": "/Users/aser/Documents/revature/Project2_OMDb_API_Movies_CMS_Group1/iMovies/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\owusu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/aser/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -458,11 +458,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -493,7 +488,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
