@@ -4,8 +4,8 @@ namespace OMDbProject.Models.DTOs;
 
 public class UserResponseDTO
 {
-    public int UserID { get; set; }
-    public string Username { get; set; }
+    public int UserId { get; set; }
+    public string UserName { get; set; }
     public DateTime CreatedAt { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
