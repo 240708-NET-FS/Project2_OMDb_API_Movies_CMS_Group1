@@ -17,6 +17,16 @@ public class FollowerService : IFollowerService
 
     public async Task<bool> AddFollowerAsync(FollowerDTO followerDTO)
         {
+
+              // Check if the user is trying to follow themselves
+                if (followerDTO.UserId == followerDTO.FollowerUserId)
+                {
+                   
+                    return false; // or alternatively throw new InvalidOperationException("User cannot follow themselves.");
+                
+                    // throw new InvalidOperationException("User cannot follow self.");
+                }
+            
             var follower = new Follower
             {
                 UserId = followerDTO.UserId,

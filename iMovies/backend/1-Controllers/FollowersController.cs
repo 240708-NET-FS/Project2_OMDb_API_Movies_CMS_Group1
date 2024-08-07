@@ -26,7 +26,7 @@ public class FollowersController : ControllerBase
             return Ok(); // Successfully added follower
         }
         
-        return BadRequest("You are already following this user."); // Follower relationship already exists
+        return BadRequest("User cannot follow self or same user more than once."); // Follower relationship already exists
        
       }
 
