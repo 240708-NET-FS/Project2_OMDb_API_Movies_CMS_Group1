@@ -64,7 +64,7 @@ namespace OMDbProject.Models;
             // Configurations for Follower entity
             modelBuilder.Entity<Follower>(entity =>
             {
-                entity.HasKey(e => e.FollowerId);
+                entity.HasKey(e => e.FollowingRelationshipId);
                 entity.HasOne(e => e.User)
                       .WithMany(u => u.Followers)
                       .HasForeignKey(e => e.UserId)

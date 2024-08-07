@@ -46,9 +46,16 @@ public class FollowersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteFollower(int id)
+    public async Task<IActionResult> DeleteFollowingRelationship(int id)
     {
-          await Task.CompletedTask; // Placeholder for await
-      return Ok();    
+         
+          var result = await _followerService.DeleteFollowingRelationshipAsync(id);
+
+        if (result)
+        {
+            return Ok("Following Relationship deleted successfully.");
+        }
+
+        return NotFound("Following Relationship not found.");
       }
 }

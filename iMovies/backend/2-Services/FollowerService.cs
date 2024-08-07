@@ -52,6 +52,10 @@ public async Task<IEnumerable<FollowerDTO>> GetFollowersByUserIdAsync(int userId
 }
 
 
+public async Task<bool> DeleteFollowingRelationshipAsync(int id)
+        {
+            return await _followerRepository.DeleteFollowingRelationshipAsync(id);
+        }
 
 
 }

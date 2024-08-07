@@ -8,5 +8,6 @@ namespace OMDbProject.Repositories.Interfaces;
     {
          Task<bool> AddFollowerAsync(Follower follower);        
          Task<IEnumerable<Follower>> GetFollowersByUserIdAsync(int userId);
+         Task<bool> DeleteFollowingRelationshipAsync(int id);
 
     }

@@ -39,5 +39,18 @@ namespace OMDbProject.Repositories;
                 .ToListAsync();
         }
 
+
+
+         public async Task<bool> DeleteFollowingRelationshipAsync(int id)
+        {
+            var follower = await _context.Followers.FindAsync(id);
+            if (follower != null)
+            {
+                _context.Followers.Remove(follower);
+                return await _context.SaveChangesAsync() > 0;
+            }
+            return false;
+        }
+
     }
 
