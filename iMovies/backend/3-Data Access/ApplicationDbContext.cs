@@ -73,6 +73,10 @@ namespace OMDbProject.Models;
                       .WithMany(u => u.Following)
                       .HasForeignKey(e => e.FollowerUserId)
                       .OnDelete(DeleteBehavior.Restrict); //No cascade delete
+                
+                // Define unique constraint for Follower table
+                entity.HasIndex(f => new { f.UserId, f.FollowerUserId })
+                      .IsUnique();
             });
 
             // If using a view for movie ranking

@@ -7,7 +7,7 @@ namespace OMDbProject.Models;
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FollowerId { get; set; }
+        public int FollowerId { get; set; } //primary key for the follower relationship(each record)
 
         [Required]
         public int UserId { get; set; } //UserId of the User being followed

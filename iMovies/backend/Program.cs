@@ -44,15 +44,17 @@ builder.Services.AddSwaggerGen();
 
 //Register dependencies
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IFollowerService, FollowerService>();
 builder.Services.AddScoped<ILikeService, LikeService>();
 builder.Services.AddScoped<IRankingService, RankingService>();
-builder.Services.AddScoped<IUserMovieService, UserMovieService>();
-builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IUserMovieService, UserMovieService>();
 builder.Services.AddScoped<IUserMovieRepository, UserMovieRepository>();
 
+builder.Services.AddScoped<IFollowerService, FollowerService>();
+builder.Services.AddScoped<IFollowerRepository, FollowerRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
