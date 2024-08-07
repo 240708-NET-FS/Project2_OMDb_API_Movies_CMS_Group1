@@ -32,8 +32,6 @@ namespace OMDbProject.Models;
         public ICollection<UserMovie>? UserMovies { get; set; }
         public ICollection<Like>? Likes { get; set; } 
 
-         // Navigation properties
-
         //Collection of followers following the user: This UserId matches UserId in Followers Table
         public ICollection<Follower>? Followers { get; set; } 
         

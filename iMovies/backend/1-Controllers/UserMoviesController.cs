@@ -36,28 +36,40 @@ public class UserMoviesController : ControllerBase
     public async Task<IActionResult> GetUserMovies()
     {
        
-    await Task.CompletedTask; // Placeholder for await
-      return Ok();
+        var userMovies = await _userMovieService.GetAllUserMoviesAsync();
+        return Ok(userMovies);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUserMovie(int id)
     {
- await Task.CompletedTask; // Placeholder for await
-      return Ok();
+              var userMovie = await _userMovieService.GetUserMovieByIdAsync(id);
+              if (userMovie == null)
+              {
+                return NotFound();
+              }
+              return Ok(userMovie);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateUserMovie(int id, UserMovieDTO userMovieDTO)
     {
-   await Task.CompletedTask; // Placeholder for await
-      return Ok();
+           var updatedUserMovie = await _userMovieService.UpdateUserMovieAsync(id, userMovieDTO);
+           if (updatedUserMovie == null)
+            {
+              return NotFound();
+            }
+           return Ok(updatedUserMovie);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUserMovie(int id)
     {
-   await Task.CompletedTask; // Placeholder for await
-      return Ok();
+         var deleted = await _userMovieService.DeleteUserMovieAsync(id);
+         if (!deleted)
+          {
+            return NotFound();
+          }
+        return NoContent();
     }
 }

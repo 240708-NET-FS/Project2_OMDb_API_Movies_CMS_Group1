@@ -8,9 +8,9 @@ namespace OMDbProject.Services.Interfaces;
     public interface IUserMovieService
     {
        Task<UserMovie> AddUserMovieAsync(UserMovieDTO userMovieDTO);
-//     Task<IEnumerable<UserMovie>> GetUserMoviesAsync();
-//     Task<UserMovie> GetUserMovieByIdAsync(int id);
-//     Task<UserMovie> UpdateUserMovieAsync(int id, UserMovieDTO userMovieDTO);
-//     Task<bool> DeleteUserMovieAsync(int id);
+       Task<UserMovie> GetUserMovieByIdAsync(int id);
+       Task<IEnumerable<UserMovie>> GetAllUserMoviesAsync();
+       Task<UserMovie> UpdateUserMovieAsync(int id, UserMovieDTO userMovieDTO);
+       Task<bool> DeleteUserMovieAsync(int id);
     }
 
