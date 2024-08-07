@@ -7,9 +7,9 @@ using OMDbProject.Models.DTOs;
 [Route("api/[controller]")]
 public class LikesController : ControllerBase
 {
-    private readonly LikeService _likeService;
+    private readonly ILikeService _likeService;
 
-    public LikesController(LikeService likeService)
+    public LikesController(ILikeService likeService)
     {
         _likeService = likeService;
     }
@@ -17,8 +17,22 @@ public class LikesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddLike(LikeDTO likeDTO)
     {
-await Task.CompletedTask; // Placeholder for await
-      return Ok();    }
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var result = await _likeService.AddLikeAsync(likeDTO);
+
+        if (result)
+        {
+            return Ok(); // Successfully added like
+        }
+
+        return BadRequest("Unable to add like.");
+
+    }
+
 
     [HttpGet("usermovies/{userMovieId}")]
     public async Task<IActionResult> GetLikesForUserMovie(int userMovieId)

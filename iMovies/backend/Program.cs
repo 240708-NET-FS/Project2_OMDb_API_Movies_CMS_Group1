@@ -44,7 +44,10 @@ builder.Services.AddSwaggerGen();
 
 //Register dependencies
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddScoped<ILikeService, LikeService>();
+builder.Services.AddScoped<ILikeRepository, LikeRepository>();
+
 builder.Services.AddScoped<IRankingService, RankingService>();
 
 builder.Services.AddScoped<IUserService, UserService>();

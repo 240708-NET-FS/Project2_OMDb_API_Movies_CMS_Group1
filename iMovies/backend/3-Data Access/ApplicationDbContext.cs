@@ -59,6 +59,9 @@ namespace OMDbProject.Models;
                       .WithMany(um => um.Likes)
                       .HasForeignKey(e => e.UserMovieId)
                       .OnDelete(DeleteBehavior.Cascade);
+                entity.HasIndex(l => new { l.UserId, l.UserMovieId })
+                      .IsUnique();
+                
             });
 
             // Configurations for Follower entity

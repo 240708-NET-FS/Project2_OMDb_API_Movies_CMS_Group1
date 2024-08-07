@@ -1,8 +1,10 @@
 using OMDbProject.Models.DTOs;
+using System.Threading.Tasks;
+
 
 namespace OMDbProject.Services.Interfaces;
 
-public interface ILikeService
-{
-
-}
+    public interface ILikeService
+    {
+        Task<bool> AddLikeAsync(LikeDTO likeDTO);
+    }
