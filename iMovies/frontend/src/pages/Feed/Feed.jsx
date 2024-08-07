@@ -212,22 +212,22 @@ const Feed = () => {
           const followStatus = isFollowing.find(follow => follow.userId === activity.userId);
           return (
             <div key={activity.timestamp} className="activity-item">
-              <div className="user-info">
+              <div className="feed-user-info">
                 <h4>
-                  <a href={`/profile/${activity.userId}`} className="user-link">{activity.username}</a>
+                  {activity.username}
                 </h4>
                 {activity.username !== currentUser && (
                   <button 
-                    className="button follow-button" 
+                    className='button'
                     onClick={() => handleFollowToggle(activity.userId)}
                   >
                     {followStatus?.isFollowing ? "Unfollow" : "Follow"}
                   </button>
                 )}
               </div>
-              <div className="movie-card-list">
+              <div className="movies-list">
                 {activity.movies.map(movie => (
-                  <div key={movie.id} className="movie-card">
+                  <div key={movie.id} className="feed-movie-card">
                     <img src={movie.poster} alt={movie.title} className="movie-poster" />
                     <div className="movie-details">
                       <h4>{movie.title}</h4>
@@ -236,15 +236,15 @@ const Feed = () => {
                       <p>Notes: {movie.notes}</p>
                       <p>Action: {activity.actionType}</p>
                       <p>Timestamp: {new Date(activity.timestamp).toLocaleString()}</p>
-                      <div className="action-buttons">
+                      <div className="feed-action-buttons">
                         <button 
-                          className="button like-button" 
+                          className="button" 
                           onClick={() => handleLikeToggle(movie.id)}
                         >
                           Like/Unlike
                         </button>
                         <button 
-                          className="button view-more-button"
+                          className="button"
                           onClick={() => console.log('View more details')}
                         >
                           View More

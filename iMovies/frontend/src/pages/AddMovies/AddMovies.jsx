@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './addmovies.css';
 import Dashboard from './../../components/Dashboard/DashBoard';
+import MovieModal from './../../components/MovieModal/MovieModal'; // Import the modal
 
 const mockMovies = [
   { id: 1, title: 'Inception', genre: 'Sci-Fi', rating: '5/5', image: '/introsectionpicture.png' },
-  { id: 2, title: 'The Godfather', genre: 'Crime', rating: '5/5', image: '/introsectionpicture.png' },
-  { id: 3, title: 'Pulp Fiction', genre: 'Thriller', rating: '5/5', image: '/introsectionpicture.png' },
 ];
 
 const AddMovies = () => {
   const [movies, setMovies] = useState(mockMovies);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -19,6 +19,10 @@ const AddMovies = () => {
   const filteredMovies = movies.filter(movie =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleAddMovie = (movie) => {
+    setMovies([...movies, movie]);
+  };
 
   return (
     <div className='wrapper'>
@@ -33,15 +37,19 @@ const AddMovies = () => {
             className='search-input'
           />
         </div>
-        <div className='movies-data'>
+        <div className='movies-list'>
           {filteredMovies.map((movie) => (
-            <div key={movie.id} className='movie-card'>
+            <div
+              key={movie.id}
+              className='add-movie-card'
+              onClick={() => setSelectedMovie(movie)}
+            >
               <div className='movies-thumbnail'>
                 <img src={movie.image} alt={movie.title} className='img-movie' />
               </div>
               <div className='movies-content text-left'>
                 <div className='movies-title'>
-                  <h2><a href='movies-details.html'>{movie.title}</a></h2>
+                  <h2>{movie.title}</h2>
                 </div>
                 <div className='movies-genres'>
                   <h1>{movie.genre}</h1>
@@ -49,12 +57,21 @@ const AddMovies = () => {
                 <div className='movies-rating'>
                   <h1>{movie.rating}</h1>
                 </div>
-                <button className='add-movie-btn'>Add Movie</button>
+                <div className='center'>
+                  <button className='button'>View Details</button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+      {selectedMovie && (
+        <MovieModal 
+          movie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+          onAddMovie={handleAddMovie}
+        />
+      )}
     </div>
   );
 };

@@ -21,7 +21,6 @@
   align-items: center; 
 }
 
-
 .logo-link {
   display: flex;
   align-items: center; 
@@ -62,6 +61,23 @@
 
 
 .nav-menu-li a:hover {
+  background-color: var(--palette_orange);
+  color: var(--palette_black); 
+}
+
+.nav-menu-li button {
+  color: var(--palette_white); 
+  background-color: var(--palette_purple); 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.nav-menu-li button:hover {
   background-color: var(--palette_orange);
   color: var(--palette_black); 
 }

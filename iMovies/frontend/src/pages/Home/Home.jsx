@@ -1,8 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './home.css';
+import { isTokenExpired } from '../../utils/jwtUtils';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
+
+  const token = localStorage.getItem('token');
+
+  // If token exists and is not expired, redirect to feed page
+  if (token && !isTokenExpired(token)) {
+    return <Navigate to="/feed" />;
+  }
+
   return (
     <div className='main'>
       <h1 className='title'>

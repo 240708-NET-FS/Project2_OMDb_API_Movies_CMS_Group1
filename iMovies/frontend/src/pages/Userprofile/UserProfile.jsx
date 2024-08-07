@@ -3,10 +3,10 @@ import './userprofile.css';
 import Dashboard from '../../components/Dashboard/DashBoard';
 
 const mockUserData = {
+  username: "romero02",
   name: "John Doe",
-  email: "john.doe@example.com",
   createdAt: "2023-01-01T00:00:00.000Z",
-  followers: ["Jane Smith", "Bob Johnson"]
+  followers: ["Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker"]
 };
 
 const mockFavoriteMovies = [
@@ -17,75 +17,19 @@ const mockFavoriteMovies = [
     genre: "Action, Adventure, Sci-Fi",
     poster: "/introsectionpicture.png",
     addedAt: "2023-01-02T00:00:00.000Z",
-    notes: "Mind-bending thriller",
-    liked: false
+    notes: "Mind-bending thriller"
   },
-  {
-    id: "2",
-    title: "The Matrix",
-    year: "1999",
-    genre: "Action, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-03T00:00:00.000Z",
-    notes: "A revolutionary film in sci-fi genre",
-    liked: true
-  },
-  {
-    id: "3",
-    title: "The Matrix Reloaded",
-    year: "2003",
-    genre: "Action, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-04T00:00:00.000Z",
-    notes: "An epic sequel",
-    liked: false
-  },
-  {
-    id: "4",
-    title: "The Matrix Revolutions",
-    year: "2003",
-    genre: "Action, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-05T00:00:00.000Z",
-    notes: "The grand finale",
-    liked: true
-  },
-  {
-    id: "5",
-    title: "Avatar",
-    year: "2009",
-    genre: "Action, Adventure, Fantasy",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-06T00:00:00.000Z",
-    notes: "Visually stunning",
-    liked: false
-  },
-  {
-    id: "6",
-    title: "Interstellar",
-    year: "2014",
-    genre: "Adventure, Drama, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-07T00:00:00.000Z",
-    notes: "A journey beyond stars",
-    liked: true
-  }
 ];
-
-// Mock current logged-in user, different from mockUserData.name to show follow and like buttons
-const currentUser = "Alice Doe";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    // Simulate API call with mock data
     setTimeout(() => {
       setUser(mockUserData);
       setFavoriteMovies(mockFavoriteMovies);
-    }, 1000); 
+    }, 1000);
   }, []);
 
   const handleUpdate = (movieId) => {
@@ -96,84 +40,60 @@ const UserProfile = () => {
     console.log(`Delete movie with ID: ${movieId}`);
   };
 
-  const handleLikeToggle = (movieId) => {
-    setFavoriteMovies(prevMovies => 
-      prevMovies.map(movie => 
-        movie.id === movieId ? { ...movie, liked: !movie.liked } : movie
-      )
-    );
-  };
-
-  const handleFollowToggle = () => {
-    setIsFollowing(prevIsFollowing => !prevIsFollowing);
-  };
-
   if (!user) {
-    return(
-    <div className='wrapper'>
-      <Dashboard />
-      <div className='loading'>Loading...</div>
-    </div>
+    return (
+      <div className='wrapper'>
+        <Dashboard />
+        <div className='user-profile-loading'>Loading...</div>
+      </div>
     );
   }
 
-  const isCurrentUserProfile = user.name === currentUser;
+  const userNameParts = user.name.split(' ');
+  const firstName = userNameParts[0];
+  const lastName = userNameParts.slice(1).join(' ');
 
   return (
     <div className='wrapper'>
-    <Dashboard />
-    <div className="user-profile">
-      <div className="user-info">
-        <h2>{user.name}'s Profile</h2>
-        <p>Email: {user.email}</p>
-        <p>Joined: {new Date(user.createdAt).toLocaleDateString()}</p>
-        <div className="followers-list">
-          <h4>Followers</h4>
-          <ul>
-            {user.followers.map((follower, index) => (
-              <li key={index}>{follower}</li>
-            ))}
-          </ul>
+      <Dashboard />
+      <div className="user-profile-container">
+        <div className="user-profile-info">
+          <div className="user-profile-details">
+            <h2>{user.username}</h2>
+            <h2>{firstName} {lastName}</h2>
+            <p>Joined: {new Date(user.createdAt).toLocaleDateString()}</p>
+          </div>
+          <div className="user-profile-followers">
+            <h4>Followers</h4>
+            <ul>
+              {user.followers.map((follower, index) => (
+                <li key={index}>{follower}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-        {!isCurrentUserProfile && (
-          <button className="button follow-button" onClick={handleFollowToggle}>
-            {isFollowing ? "Unfollow" : "Follow"}
-          </button>
-        )}
-      </div>
-      <div className="favorite-movies">
-        <h3>Favorite Movies</h3>
-        <div className="movies-list">
-          {favoriteMovies.map(movie => (
-            <div key={movie.id} className="movie-item">
-              <img src={movie.poster} alt={movie.title} className="movie-poster" />
-              <div className="movie-details">
-                <h4>{movie.title}</h4>
-                <p>Year: {movie.year}</p>
-                <p>Genre: {movie.genre}</p>
-                <p>Added on: {new Date(movie.addedAt).toLocaleDateString()}</p>
-                <p>Notes: {movie.notes}</p>
-                <div className="action-buttons">
-                  {isCurrentUserProfile ? (
-                    <>
-                      <button className="button update-button" onClick={() => handleUpdate(movie.id)}>Update</button>
-                      <button className="button delete-button" onClick={() => handleDelete(movie.id)}>Delete</button>
-                    </>
-                  ) : (
-                    <button 
-                      className={`button like-button ${movie.liked ? 'liked' : ''}`} 
-                      onClick={() => handleLikeToggle(movie.id)}
-                    >
-                      {movie.liked ? "Unlike" : "Like"}
-                    </button>
-                  )}
+        <div className="user-profile-movies">
+          <h3>Favorite Movies</h3>
+          <div className="user-profile-movie-cards">
+            {favoriteMovies.map(movie => (
+              <div key={movie.id} className="user-profile-movie-card">
+                <img src={movie.poster} alt={movie.title} className="user-profile-movie-poster" />
+                <div className="user-profile-movie-details">
+                  <h4>{movie.title}</h4>
+                  <p>Year: {movie.year}</p>
+                  <p>Genre: {movie.genre}</p>
+                  <p>Added on: {new Date(movie.addedAt).toLocaleDateString()}</p>
+                  <p>Notes: {movie.notes}</p>
+                  <div className="user-profile-movie-action-buttons">
+                    <button className="button update-button" onClick={() => handleUpdate(movie.id)}>Update</button>
+                    <button className="button delete-button" onClick={() => handleDelete(movie.id)}>Delete</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
