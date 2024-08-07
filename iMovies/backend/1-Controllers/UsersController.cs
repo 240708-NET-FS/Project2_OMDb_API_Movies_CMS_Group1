@@ -30,8 +30,8 @@ public class UsersController : ControllerBase
 
             try
             {
-                var user = await _userService.RegisterUserAsync(userRegistrationDTO); //create user
-                return CreatedAtAction(nameof(GetUserById), new { id = user.UserId }, user); //return created user
+                var userRegistrationResponseDTO = await _userService.RegisterUserAsync(userRegistrationDTO);
+                return CreatedAtAction(nameof(GetUserById), new { id = userRegistrationResponseDTO.UserId }, userRegistrationResponseDTO);
             }
             catch (Exception ex)
             {

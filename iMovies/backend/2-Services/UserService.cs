@@ -21,7 +21,7 @@ namespace OMDbProject.Services;
             _userRepository = userRepository;
         }
 
-        public async Task<User> RegisterUserAsync(UserRegistrationDTO userRegistrationDTO)
+        public async Task<UserRegistrationResponseDTO> RegisterUserAsync(UserRegistrationDTO userRegistrationDTO)
         {
             var existingUser = await _userRepository.GetUserByUserNameAsync(userRegistrationDTO.UserName);
 
@@ -46,8 +46,18 @@ namespace OMDbProject.Services;
                 CreatedAt = DateTime.UtcNow
             };
 
-            await _userRepository.AddUserAsync(user);
-            return new User {FirstName = user.FirstName, LastName = user.LastName};
+            await _userRepository.AddUserAsync(user); //add user
+            var addedUser = await _userRepository.GetUserByUserNameAsync(user.UserName); //return added user details
+            
+            return new UserRegistrationResponseDTO
+            {
+                UserId = addedUser.UserId, 
+                UserName = addedUser.UserName,
+                FirstName = addedUser.FirstName,
+                LastName = addedUser.LastName,
+                CreatedAt = addedUser.CreatedAt 
+             };
+
         }
 
 
