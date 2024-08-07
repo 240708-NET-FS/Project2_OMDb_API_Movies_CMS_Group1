@@ -8,5 +8,8 @@ public class UserMovieDTO
     public string? OMDBId { get; set; }
     public decimal? UserRating { get; set; }
     public string? UserReview { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
      
 }

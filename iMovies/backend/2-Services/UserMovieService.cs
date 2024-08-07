@@ -67,4 +67,26 @@ namespace OMDbProject.Services;
             return await _userMovieRepository.DeleteUserMovieAsync(id);
         }
 
+
+
+        public async Task<IEnumerable<UserMovieDTO>> GetMoviesByUserIdAsync(int userId)
+    {
+        var userMovies = await _userMovieRepository.GetUserMoviesByUserIdAsync(userId);
+        
+        // Convert UserMovie entities to MovieDTOs
+        return userMovies.Select(um => new UserMovieDTO
+        {
+            OMDBId = um.OMDBId,
+            UserId = um.UserId,
+            UserMovieId = um.UserMovieId,
+            UserRating = um.UserRating,
+            UserReview = um.UserReview,
+            CreatedAt = um.CreatedAt,
+            UpdatedAt = um.UpdatedAt
+
+        });
+        
+    }
+
+
     }

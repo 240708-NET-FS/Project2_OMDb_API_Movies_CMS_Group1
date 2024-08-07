@@ -4,6 +4,7 @@ using OMDbProject.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace OMDbProject.Repositories;
 
@@ -57,5 +58,14 @@ namespace OMDbProject.Repositories;
             await _context.SaveChangesAsync();
             return true;
         }
+
+
+
+        public async Task<IEnumerable<UserMovie>> GetUserMoviesByUserIdAsync(int userId)
+            {
+                return await _context.UserMovies
+                .Where(um => um.UserId == userId)
+                .ToListAsync();
+            }
 
     }

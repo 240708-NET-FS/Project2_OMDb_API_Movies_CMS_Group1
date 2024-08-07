@@ -72,4 +72,20 @@ public class UserMoviesController : ControllerBase
           }
         return NoContent();
     }
+
+
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetMoviesByUserId(int userId)
+    {
+        var movies = await _userMovieService.GetMoviesByUserIdAsync(userId);
+
+        if (movies == null || !movies.Any())
+        {
+            return NotFound("No movies found for this user.");
+        }
+
+        return Ok(movies);
+    }
+
+
 }

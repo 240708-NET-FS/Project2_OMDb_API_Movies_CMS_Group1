@@ -11,5 +11,6 @@ namespace OMDbProject.Repositories.Interfaces;
           Task<IEnumerable<UserMovie>> GetAllUserMoviesAsync();
           Task<UserMovie> UpdateUserMovieAsync(UserMovie userMovie);
           Task<bool> DeleteUserMovieAsync(int id);
+          Task<IEnumerable<UserMovie>> GetUserMoviesByUserIdAsync(int userId);
    }
 
