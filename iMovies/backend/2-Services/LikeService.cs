@@ -37,4 +37,21 @@ namespace OMDbProject.Services;
             return await _likeRepository.AddLikeAsync(like);
         }
     
+
+            public async Task<IEnumerable<LikeDTO>> GetLikesForUserMovieAsync(int userMovieId)
+        {
+                var likes = await _likeRepository.GetLikesForUserMovieAsync(userMovieId);
+
+                    // Convert to DTO if needed
+                return likes.Select(l => new LikeDTO
+                 {
+                    UserId = l.UserId,
+                    UserMovieId = l.UserMovieId,
+                    CreatedAt = l.CreatedAt
+                 });
+}
+
+
+
+
 }

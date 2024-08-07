@@ -27,7 +27,14 @@ namespace OMDbProject.Repositories;
                 .FirstOrDefaultAsync(l => l.UserId == userId && l.UserMovieId == userMovieId);
         }
 
-    
+        public async Task<IEnumerable<Like>> GetLikesForUserMovieAsync(int userMovieId)
+        {
+                return await _context.Likes
+                .Where(l => l.UserMovieId == userMovieId)
+                .ToListAsync();
+        
+        }
+
     
     }
 

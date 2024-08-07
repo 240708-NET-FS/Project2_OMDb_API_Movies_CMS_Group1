@@ -37,8 +37,14 @@ public class LikesController : ControllerBase
     [HttpGet("usermovies/{userMovieId}")]
     public async Task<IActionResult> GetLikesForUserMovie(int userMovieId)
     {
-          await Task.CompletedTask; // Placeholder for await
-      return Ok();
+            var likes = await _likeService.GetLikesForUserMovieAsync(userMovieId);
+
+            if (likes == null || !likes.Any())
+            {
+                return NotFound("No likes found for this movie.");
+            }   
+
+            return Ok(likes);
     }
 
     [HttpDelete("{id}")]

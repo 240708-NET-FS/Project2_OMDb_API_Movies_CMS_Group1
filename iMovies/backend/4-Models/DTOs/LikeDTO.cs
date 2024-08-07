@@ -7,4 +7,5 @@ public class LikeDTO
 {
     public int UserId { get; set; }
     public int UserMovieId { get; set; }
+    public DateTime CreatedAt {get; set;}
 }
