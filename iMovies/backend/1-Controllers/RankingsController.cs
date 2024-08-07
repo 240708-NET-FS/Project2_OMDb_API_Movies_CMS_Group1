@@ -17,7 +17,7 @@ public class RankingsController : ControllerBase
     [HttpGet("top")]
     public async Task<IActionResult> GetTopRankedMovies()
     {
-          return Ok();
-    await Task.CompletedTask; // Placeholder for await
+        await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 }

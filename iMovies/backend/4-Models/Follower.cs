@@ -19,9 +19,9 @@ namespace OMDbProject.Models;
 
         // Navigation properties
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; } //Navigation property User User uses UserId to create a reference to the user being followed.
+        public User? User { get; set; } //Navigation property User User uses UserId to create a reference to the user being followed.
 
         [ForeignKey(nameof(FollowerUserId))]
-        public User FollowerUser { get; set; } //Navigation property User FollowerUser uses FollowerUserId to create a reference to the user who is doing the following
+        public User? FollowerUser { get; set; } //Navigation property User FollowerUser uses FollowerUserId to create a reference to the user who is doing the following
     }
 

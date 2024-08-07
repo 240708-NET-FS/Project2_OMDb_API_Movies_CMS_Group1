@@ -21,8 +21,8 @@ namespace OMDbProject.Models;
 
         // Navigation properties
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; } //the user who gave the like
+        public User? User { get; set; } //the user who gave the like
 
         [ForeignKey(nameof(UserMovieId))]
-        public UserMovie UserMovie { get; set; } //the movie being liked
+        public UserMovie? UserMovie { get; set; } //the movie being liked
     }

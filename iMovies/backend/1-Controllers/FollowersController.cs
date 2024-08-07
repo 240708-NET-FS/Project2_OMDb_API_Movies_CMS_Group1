@@ -18,21 +18,21 @@ public class FollowersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddFollower(FollowerDTO followerDTO)
     {
-       return Ok();
-    await Task.CompletedTask; // Placeholder for await
+     await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetFollowers(int userId)
     {
-          return Ok();
-    await Task.CompletedTask; // Placeholder for await
+      await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteFollower(int id)
     {
-          return Ok();
-    await Task.CompletedTask; // Placeholder for await
-    }
+          await Task.CompletedTask; // Placeholder for await
+      return Ok();    
+      }
 }

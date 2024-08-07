@@ -5,8 +5,8 @@ public class UserMovieDTO
 {
     public int UserMovieId { get; set; }
     public int UserId { get; set; }
-    public string OMDBId { get; set; }
+    public string? OMDBId { get; set; }
     public decimal? UserRating { get; set; }
-    public string UserReview { get; set; }
+    public string? UserReview { get; set; }
      
 }

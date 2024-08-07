@@ -35,28 +35,29 @@ public class UserMoviesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetUserMovies()
     {
-         return Ok();
+       
     await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUserMovie(int id)
     {
-         return Ok();
-    await Task.CompletedTask; // Placeholder for await
+ await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateUserMovie(int id, UserMovieDTO userMovieDTO)
     {
-        return Ok();
-    await Task.CompletedTask; // Placeholder for await
+   await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUserMovie(int id)
     {
-        return Ok();
-    await Task.CompletedTask; // Placeholder for await
+   await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 }

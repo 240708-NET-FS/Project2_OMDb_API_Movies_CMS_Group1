@@ -17,21 +17,19 @@ public class LikesController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddLike(LikeDTO likeDTO)
     {
-            return Ok();
-    await Task.CompletedTask; // Placeholder for await
-    }
+await Task.CompletedTask; // Placeholder for await
+      return Ok();    }
 
     [HttpGet("usermovies/{userMovieId}")]
     public async Task<IActionResult> GetLikesForUserMovie(int userMovieId)
     {
-          return Ok();
-    await Task.CompletedTask; // Placeholder for await
+          await Task.CompletedTask; // Placeholder for await
+      return Ok();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLike(int id)
     {
-         return Ok();
-    await Task.CompletedTask; // Placeholder for await
-    }
+      await Task.CompletedTask; // Placeholder for await
+      return Ok();   }
 }
