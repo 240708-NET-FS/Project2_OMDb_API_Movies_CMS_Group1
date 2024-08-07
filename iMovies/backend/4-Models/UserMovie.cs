@@ -15,13 +15,11 @@ namespace OMDbProject.Models;
 
         [Required]
         [StringLength(10)]
-        public string OMDBId { get; set; }
-
-        public DateTime? WatchedOn { get; set; }
-
+        public string? OMDBId { get; set; }
+        
         public decimal? UserRating { get; set; }
 
-        public string UserReview { get; set; }
+        public string? UserReview { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }
@@ -31,9 +29,9 @@ namespace OMDbProject.Models;
 
         // Navigation properties
         [ForeignKey("UserId")]
-        public User User { get; set; } //User related to the UserMovie, based on the UserId
+        public User? User { get; set; } //User related to the UserMovie, based on the UserId
         
-        public ICollection<Like> Likes { get; set; } //collection of Like entities related to the UserMovie, based on UserMovieId
+        public ICollection<Like>? Likes { get; set; } //collection of Like entities related to the UserMovie, based on UserMovieId
 
 
     }

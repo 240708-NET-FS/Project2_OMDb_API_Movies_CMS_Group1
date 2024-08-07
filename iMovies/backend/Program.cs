@@ -51,6 +51,7 @@ builder.Services.AddScoped<IUserMovieService, UserMovieService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserMovieRepository, UserMovieRepository>();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => 

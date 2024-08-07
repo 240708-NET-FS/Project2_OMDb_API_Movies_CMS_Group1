@@ -12,8 +12,8 @@ using OMDbProject.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240806022925_initialCreate")]
-    partial class initialCreate
+    [Migration("20240807050801_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,12 +139,12 @@ namespace backend.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<decimal?>("UserRating")
+                        .HasColumnType("decimal(2, 1)");
+
                     b.Property<string>("UserReview")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("WatchedOn")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("UserMovieId");
 

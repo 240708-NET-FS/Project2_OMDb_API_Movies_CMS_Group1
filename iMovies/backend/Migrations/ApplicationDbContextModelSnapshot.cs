@@ -143,9 +143,6 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("WatchedOn")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("UserMovieId");
 
                     b.HasIndex("UserId");
