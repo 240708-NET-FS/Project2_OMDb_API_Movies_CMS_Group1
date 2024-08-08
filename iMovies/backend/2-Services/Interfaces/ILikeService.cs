@@ -8,4 +8,5 @@ namespace OMDbProject.Services.Interfaces;
     {
         Task<bool> AddLikeAsync(LikeDTO likeDTO);
         Task<IEnumerable<LikeDTO>> GetLikesForUserMovieAsync(int userMovieId);
+        Task<bool> DeleteLikeAsync(int likeId);
     }

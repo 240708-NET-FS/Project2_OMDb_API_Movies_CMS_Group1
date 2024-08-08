@@ -35,6 +35,23 @@ namespace OMDbProject.Repositories;
         
         }
 
+
+        public async Task<bool> DeleteLikeAsync(int likeId)
+    {
+        var like = await _context.Likes.FindAsync(likeId);
+        if (like == null)
+        {
+            return false; // Like not found
+        }
+
+        _context.Likes.Remove(like);
+        return await _context.SaveChangesAsync() > 0;
+    }
+
+    public async Task<bool> LikeExistsAsync(int likeId)
+    {
+        return await _context.Likes.AnyAsync(l => l.LikeId == likeId);
+    }
     
     }
 

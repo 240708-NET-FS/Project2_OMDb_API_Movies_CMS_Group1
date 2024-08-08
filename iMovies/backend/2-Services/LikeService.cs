@@ -49,9 +49,19 @@ namespace OMDbProject.Services;
                     UserMovieId = l.UserMovieId,
                     CreatedAt = l.CreatedAt
                  });
-}
+        }
 
 
+        public async Task<bool> DeleteLikeAsync(int likeId)
+    {
+        var likeExists = await _likeRepository.LikeExistsAsync(likeId);
+        if (!likeExists)
+        {
+            return false; // Like does not exist
+        }
+
+        return await _likeRepository.DeleteLikeAsync(likeId);
+    }
 
 
 }

@@ -26,7 +26,7 @@ public class LikesController : ControllerBase
 
         if (result)
         {
-            return Ok(); // Successfully added like
+            return Ok(result); // Successfully added like
         }
 
         return BadRequest("Unable to add like.");
@@ -50,6 +50,15 @@ public class LikesController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLike(int id)
     {
-      await Task.CompletedTask; // Placeholder for await
-      return Ok();   }
+     
+            var result = await _likeService.DeleteLikeAsync(id);
+
+             if (result)
+            {
+                return Ok(result+ ":Like delete operation success"); // Successfully deleted like
+            }
+
+            return NotFound("Like not found.");
+     
+    }
 }
