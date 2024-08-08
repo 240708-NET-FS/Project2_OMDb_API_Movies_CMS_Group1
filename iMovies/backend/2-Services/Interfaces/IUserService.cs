@@ -7,4 +7,5 @@ namespace OMDbProject.Services.Interfaces;
     {
         Task<UserRegistrationResponseDTO> RegisterUserAsync(UserRegistrationDTO userRegistrationDTO);
         Task<User> GetUserByIdAsync(int id);
+        Task<List<UserWithMoviesDTO>> GetAllUsersWithMoviesAsync();
     }

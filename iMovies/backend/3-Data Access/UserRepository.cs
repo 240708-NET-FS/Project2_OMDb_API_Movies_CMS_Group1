@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OMDbProject.Models;
+using OMDbProject.Models.DTOs;
 using OMDbProject.Repositories.Interfaces;
 
 using System.Threading.Tasks;
@@ -47,5 +48,34 @@ namespace OMDbProject.Repositories;
                 await _context.SaveChangesAsync();
             }
         }
+
+        
+    public async Task<List<UserWithMoviesDTO>> GetAllUsersWithMoviesAsync()
+    {
+        var users = await _context.Users
+            .Include(u => u.UserMovies)
+            .ToListAsync();
+
+        return users.Select(user => new UserWithMoviesDTO
+        {
+            UserId = user.UserId,
+            UserName = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserMovies = user.UserMovies.Select(um => new UserMovieDTO
+            {
+                UserMovieId = um.UserMovieId,
+                UserId = um.UserId,
+                OMDBId = um.OMDBId,
+                UserRating = um.UserRating,
+                UserReview = um.UserReview,
+                CreatedAt = um.CreatedAt,
+                UpdatedAt = um.UpdatedAt
+            }).ToList()
+        }).ToList();
+    }
+
+
+
     }
 

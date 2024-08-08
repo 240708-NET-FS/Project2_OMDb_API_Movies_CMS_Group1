@@ -60,6 +60,10 @@ namespace OMDbProject.Services;
 
         }
 
+            public async Task<List<UserWithMoviesDTO>> GetAllUsersWithMoviesAsync()
+        {
+                return await _userRepository.GetAllUsersWithMoviesAsync();
+        }
 
         public async Task<User> GetUserByIdAsync(int id)
         {

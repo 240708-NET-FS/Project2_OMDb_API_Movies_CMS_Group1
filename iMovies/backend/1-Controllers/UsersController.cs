@@ -54,4 +54,20 @@ public class UsersController : ControllerBase
 
             return Ok(user);
     }
+
+
+     [HttpGet("users-with-movies")]
+    public async Task<IActionResult> GetAllUsersWithMovies()
+    {
+        var usersWithMovies = await _userService.GetAllUsersWithMoviesAsync();
+
+        if (usersWithMovies == null || !usersWithMovies.Any())
+        {
+            return NotFound("No users found.");
+        }
+
+        return Ok(usersWithMovies);
+    }
+
+
 }

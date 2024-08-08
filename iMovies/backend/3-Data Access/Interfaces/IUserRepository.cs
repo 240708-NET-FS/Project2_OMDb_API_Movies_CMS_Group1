@@ -1,4 +1,5 @@
 using OMDbProject.Models;
+using OMDbProject.Models.DTOs;
 using System.Threading.Tasks;
 
 namespace OMDbProject.Repositories.Interfaces;
@@ -10,5 +11,6 @@ namespace OMDbProject.Repositories.Interfaces;
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int userId);
+        Task<List<UserWithMoviesDTO>> GetAllUsersWithMoviesAsync();
     }
 
