@@ -41,7 +41,6 @@ namespace OMDbProject.Services;
                 return null;
             }
 
-            userMovie.OMDBId = userMovieDTO.OMDBId;
             userMovie.UserRating = userMovieDTO.UserRating;
             userMovie.UserReview = userMovieDTO.UserReview;
             userMovie.UpdatedAt = DateTime.UtcNow;

@@ -22,7 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddCors(co => {
     co.AddPolicy("CORS" , pb =>{
         pb.WithOrigins("*")
-        .AllowAnyHeader();
+        .AllowAnyHeader()
+        .AllowAnyMethod(); 
     });
 });
 //CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS
