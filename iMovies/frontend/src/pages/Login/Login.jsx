@@ -55,10 +55,11 @@ const Login = () =>
 
                 if (response.ok) {
                     const data = await response.json();
-                    const { token } = data;
+                    const user = data;
 
                     // Store token in local storage
-                    localStorage.setItem('token', token);
+                    localStorage.setItem('token', user.token);
+                    localStorage.setItem('user', JSON.stringify(user) );
 
                     // Emit a custom event to notify about the token change
                     window.dispatchEvent(new CustomEvent('tokenChanged'));

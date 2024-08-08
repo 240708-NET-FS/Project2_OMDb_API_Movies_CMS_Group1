@@ -13,7 +13,11 @@ const SignUp = () => {
     });
     const [errors, setErrors] = useState({});
     const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState(''); // new state to determine message type
+    const [messageType, setMessageType] = useState(''); 
+
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    };
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +27,7 @@ const SignUp = () => {
         let formErrors = {};
         let valid = true;
     
-        //validate that the last name input is not empty or consisting solely of whitespace characters
+        //validate that the input is not empty or consisting solely of whitespace characters
         if (!formData.fname.trim()) {
             formErrors.fname = 'First name is required';
             valid = false;
@@ -61,14 +65,18 @@ const SignUp = () => {
 
         if (validateForm()) {
             try {
+                // Capitalize first letter of fname and lname
+                const capitalizedFname = capitalizeFirstLetter(formData.fname);
+                const capitalizedLname = capitalizeFirstLetter(formData.lname);
+
                 const response = await fetch('http://localhost:5299/api/Users/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        firstName: formData.fname,
-                        lastName: formData.lname,
+                        firstName: capitalizedFname,
+                        lastName: capitalizedLname,
                         userName: formData.uname,
                         password: formData.pass
                     })

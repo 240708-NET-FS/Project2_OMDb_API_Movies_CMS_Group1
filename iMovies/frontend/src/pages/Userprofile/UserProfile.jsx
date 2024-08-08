@@ -1,57 +1,111 @@
 import React, { useEffect, useState } from 'react';
 import './userprofile.css';
 import Dashboard from '../../components/Dashboard/DashBoard';
-
-const mockUserData = {
-  username: "romero02",
-  name: "John Doe",
-  createdAt: "2023-01-01T00:00:00.000Z",
-  followers: ["Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker"]
-};
-
-const mockFavoriteMovies = [
-  {
-    id: "1",
-    title: "Inception",
-    year: "2010",
-    genre: "Action, Adventure, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    addedAt: "2023-01-02T00:00:00.000Z",
-    notes: "Mind-bending thriller"
-  },
-];
+import SkeletonCard from '../../components/SkeletonCard/SkeletonCard'; 
+import UpdateMovieModal from '../../components/UpdateMovieModal/UpdateMovieModal';
 
 const UserProfile = () => {
-  const [user, setUser] = useState(null);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user?.userId;
+  const username = user?.userName;
+  const firstname = user?.firstName;
+  const lastname = user?.lastName;
+  const date = user?.createdAt;
+  const followers = ["Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker"];
+  const OMDB_API_KEY = "";
+
 
   useEffect(() => {
-    setTimeout(() => {
-      setUser(mockUserData);
-      setFavoriteMovies(mockFavoriteMovies);
-    }, 1000);
-  }, []);
+    const fetchFavoriteMovies = async () => {
+      try {
+        const response = await fetch(`http://localhost:5299/api/UserMovies/user/${userId}`);
+        const movieData = await response.json();
 
-  const handleUpdate = (movieId) => {
-    console.log(`Update movie with ID: ${movieId}`);
+        const movieDetailsPromises = movieData.map(async (movie) => {
+          const omdbResponse = await fetch(`http://www.omdbapi.com/?i=${movie.omdbId}&apikey=${OMDB_API_KEY}`);
+          const omdbData = await omdbResponse.json();
+
+          return {
+            id: movie.userMovieId,
+            title: omdbData.Title,
+            year: omdbData.Year,
+            genre: omdbData.Genre,
+            poster: omdbData.Poster,
+            addedAt: movie.createdAt,
+            rating: movie.userRating,
+            review: movie.userReview,
+            rated: omdbData.Rated,
+            released: omdbData.Released,
+            runtime: omdbData.Runtime,
+            director: omdbData.Director,
+            actors: omdbData.Actors,
+            plot: omdbData.Plot
+          };
+        });
+
+        const moviesWithDetails = await Promise.all(movieDetailsPromises);
+        setFavoriteMovies(moviesWithDetails);
+      } catch (error) {
+        console.error('Error fetching favorite movies:', error);
+      } finally {
+        setIsLoading(false); 
+      }
+    };
+
+    if (userId) {
+      fetchFavoriteMovies();
+    } else {
+      setIsLoading(false); 
+    }
+  }, [userId]);
+
+  const handleUpdate = (movie) => {
+    setSelectedMovie(movie); 
+    setModalOpen(true);
   };
 
-  const handleDelete = (movieId) => {
-    console.log(`Delete movie with ID: ${movieId}`);
+  const handleCloseModal = () => {
+    setModalOpen(false); 
+    setSelectedMovie(null); 
   };
 
-  if (!user) {
+  const handleDelete = async (movieId) => {
+    const confirmed = window.confirm('Are you sure you want to delete this movie?');
+
+    if (confirmed) {
+      try {
+        const response = await fetch(`http://localhost:5299/api/UserMovies/${movieId}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          alert("Failed to Delete Movie");
+        }
+
+        setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== movieId));
+        console.log('Movie deleted successfully');
+      } catch (error) {
+        alert('Error deleting movie:', error);
+      }
+    }
+  };
+
+  if (isLoading) {
     return (
       <div className='wrapper'>
         <Dashboard />
-        <div className='user-profile-loading'>Loading...</div>
+        <div className='user-profile-loading'>
+          {[...Array(6)].map((_, index) => (
+            <SkeletonCard key={index} />
+          ))}
+        </div>
       </div>
     );
   }
-
-  const userNameParts = user.name.split(' ');
-  const firstName = userNameParts[0];
-  const lastName = userNameParts.slice(1).join(' ');
 
   return (
     <div className='wrapper'>
@@ -59,14 +113,14 @@ const UserProfile = () => {
       <div className="user-profile-container">
         <div className="user-profile-info">
           <div className="user-profile-details">
-            <h2>{user.username}</h2>
-            <h2>{firstName} {lastName}</h2>
-            <p>Joined: {new Date(user.createdAt).toLocaleDateString()}</p>
+            <h2>{username}</h2>
+            <h2>{firstname} {lastname}</h2>
+            <p>Joined: {new Date(date).toLocaleDateString()}</p>
           </div>
           <div className="user-profile-followers">
             <h4>Followers</h4>
             <ul>
-              {user.followers.map((follower, index) => (
+              {followers.map((follower, index) => (
                 <li key={index}>{follower}</li>
               ))}
             </ul>
@@ -74,26 +128,41 @@ const UserProfile = () => {
         </div>
         <div className="user-profile-movies">
           <h3>Favorite Movies</h3>
-          <div className="user-profile-movie-cards">
-            {favoriteMovies.map(movie => (
-              <div key={movie.id} className="user-profile-movie-card">
-                <img src={movie.poster} alt={movie.title} className="user-profile-movie-poster" />
-                <div className="user-profile-movie-details">
-                  <h4>{movie.title}</h4>
-                  <p>Year: {movie.year}</p>
-                  <p>Genre: {movie.genre}</p>
-                  <p>Added on: {new Date(movie.addedAt).toLocaleDateString()}</p>
-                  <p>Notes: {movie.notes}</p>
-                  <div className="user-profile-movie-action-buttons">
-                    <button className="button update-button" onClick={() => handleUpdate(movie.id)}>Update</button>
-                    <button className="button delete-button" onClick={() => handleDelete(movie.id)}>Delete</button>
+          {favoriteMovies.length === 0 ? (
+            <p>No favorite movies added yet.</p>
+          ) : (
+            <div className="user-profile-movie-cards">
+              {favoriteMovies.map(movie => (
+                <div key={movie.id} className="user-profile-movie-card">
+                  <img src={movie.poster || '/placeholder.png'} alt={movie.title} className="user-profile-movie-poster" />
+                  <div className="user-profile-movie-details">
+                    <h4>{movie.title}</h4>
+                    <p><strong>Year:</strong> {movie.year}</p>
+                    <p><strong>Genre:</strong> {movie.genre}</p>
+                    <p><strong>Added on:</strong> {new Date(movie.addedAt).toLocaleDateString()}</p>
+                    <p><strong>My Rating:</strong> {movie.rating}</p>
+                    <p><strong>Review:</strong> {movie.review}</p>
+                    <div className="user-profile-movie-action-buttons">
+                      <button className="button update-button" onClick={() => handleUpdate(movie)}>Update</button>
+                      <button className="button delete-button" onClick={() => handleDelete(movie.id)}>Delete</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
+      {modalOpen && selectedMovie && (
+        <UpdateMovieModal
+          movie={selectedMovie}
+          onClose={handleCloseModal}
+          onUpdate={(updatedMovie) => {
+            setFavoriteMovies(favoriteMovies.map(movie => movie.id === updatedMovie.id ? updatedMovie : movie));
+            handleCloseModal();
+          }}
+        />
+      )}
     </div>
   );
 };

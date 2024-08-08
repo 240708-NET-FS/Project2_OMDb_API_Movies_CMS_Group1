@@ -88,3 +88,15 @@
       margin-bottom: 15px;
     }
   }
+
+  .skeleton-wrapper {
+    display: flex;
+    gap: 15px; 
+    justify-content: center; 
+    overflow: hidden;
+    overflow-x: auto;
+  }
+
+  .no-results{
+    color: red;
+  }
