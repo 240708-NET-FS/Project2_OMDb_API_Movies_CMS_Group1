@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OMDbProject.Models;
+using OMDbProject.Models.DTOs;
 using OMDbProject.Repositories.Interfaces;
 using System.Threading.Tasks;
 
@@ -51,6 +52,34 @@ namespace OMDbProject.Repositories;
             }
             return false;
         }
+
+
+
+        public async Task<List<UserWithMoviesDTO>> GetFollowingWithMoviesAsync(int userId)
+            {
+                var followingWithMovies = await _context.Followers
+                .Where(f => f.FollowerUserId == userId)
+                .Select(f => new UserWithMoviesDTO
+                    {
+                        UserId = f.UserId,
+                        FirstName = f.User.FirstName,
+                        LastName = f.User.LastName,
+                        UserName = f.User.UserName,
+                        UserMovies = f.User.UserMovies.Select(um => new UserMovieDTO
+                        {
+                            UserMovieId = um.UserMovieId,
+                            UserId = um.UserId,
+                            OMDBId = um.OMDBId,
+                            UserRating = um.UserRating,
+                            UserReview = um.UserReview,
+                            CreatedAt = um.CreatedAt,
+                            UpdatedAt = um.UpdatedAt
+                        }).ToList()
+                        })
+                        .ToListAsync();
+
+                        return followingWithMovies;
+            }
 
     }
 

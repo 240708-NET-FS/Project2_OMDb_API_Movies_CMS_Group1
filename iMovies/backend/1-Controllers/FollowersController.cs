@@ -58,4 +58,19 @@ public class FollowersController : ControllerBase
 
         return NotFound("Following Relationship not found.");
       }
+
+
+
+      [HttpGet("{userId}/following-with-movies")]
+      public async Task<IActionResult> GetFollowingWithMovies(int userId)
+       {
+          var followingWithMovies = await _followerService.GetFollowingWithMoviesAsync(userId);
+
+          if (followingWithMovies == null || !followingWithMovies.Any())
+          {
+              return NotFound("This user is not following anyone.");
+          }
+
+          return Ok(followingWithMovies);
+      }
 }

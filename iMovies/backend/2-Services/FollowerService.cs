@@ -58,4 +58,10 @@ public async Task<bool> DeleteFollowingRelationshipAsync(int id)
         }
 
 
+
+         public async Task<List<UserWithMoviesDTO>> GetFollowingWithMoviesAsync(int userId)
+                {
+                    return await _followerRepository.GetFollowingWithMoviesAsync(userId);
+                }
+
 }

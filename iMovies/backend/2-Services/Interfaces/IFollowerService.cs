@@ -9,4 +9,5 @@ public interface IFollowerService
      Task<IEnumerable<FollowerDTO>> GetFollowersByUserIdAsync(int userId);
 
      Task<bool> DeleteFollowingRelationshipAsync(int id);
+     Task<List<UserWithMoviesDTO>> GetFollowingWithMoviesAsync(int userId);
 }
