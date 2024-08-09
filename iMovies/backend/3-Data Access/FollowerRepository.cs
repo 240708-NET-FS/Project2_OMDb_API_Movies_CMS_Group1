@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OMDbProject.Models;
 using OMDbProject.Models.DTOs;
@@ -15,7 +16,7 @@ namespace OMDbProject.Repositories;
             _context = context;
         }
 
-        public async Task<bool> AddFollowerAsync(Follower follower)
+        public async Task<Follower> AddFollowerAsync(Follower follower)
         {
 
             // Check if the follower relationship already exists
@@ -24,12 +25,16 @@ namespace OMDbProject.Repositories;
 
             if (existingFollower != null)
             {
-                // Follower relationship already exists
-                return false;
+             // Follower relationship already exists
+              return null;           
             }
 
             _context.Followers.Add(follower);
-            return await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+          
+            // Return a response
+            return follower;
+        
         }
 
 

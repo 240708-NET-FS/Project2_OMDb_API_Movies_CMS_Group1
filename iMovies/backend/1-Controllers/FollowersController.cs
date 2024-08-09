@@ -21,12 +21,29 @@ public class FollowersController : ControllerBase
     {
         var result = await _followerService.AddFollowerAsync(followerDTO);
 
-        if (result)
+        if (result!=null)
         {
-            return Ok(); // Successfully added follower
+            // Successfully added follower
+            var followerResponseDTO = new FollowerResponseDTO {
+              
+              FollowingRelationshipId = result.FollowingRelationshipId,
+              UserId = result.FollowerUserId,
+              FollowerUserId = result.FollowerUserId,
+              CreatedAt = result.CreatedAt
+              
+              };
+            
+            return Ok(followerResponseDTO); 
         }
         
-        return BadRequest("User cannot follow self or same user more than once."); // Follower relationship already exists
+         // Return a JSON response with an error message
+          var errorResponse = new
+          {
+              Message = "User cannot follow self or the same user more than once."
+          };
+
+        
+        return BadRequest(errorResponse); // Follower relationship already exists or user not allowed to follow self
        
       }
 
