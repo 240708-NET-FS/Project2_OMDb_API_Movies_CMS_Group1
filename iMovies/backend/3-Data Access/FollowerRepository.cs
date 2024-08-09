@@ -65,6 +65,7 @@ namespace OMDbProject.Repositories;
                         FirstName = f.User.FirstName,
                         LastName = f.User.LastName,
                         UserName = f.User.UserName,
+                        FollowingRelationshipId = f.FollowingRelationshipId,
                         UserMovies = f.User.UserMovies.Select(um => new UserMovieDTO
                         {
                             UserMovieId = um.UserMovieId,

@@ -45,6 +45,7 @@ namespace OMDbProject.Services;
                     // Convert to DTO if needed
                 return likes.Select(l => new LikeDTO
                  {
+                    LikeId = l.LikeId,
                     UserId = l.UserId,
                     UserMovieId = l.UserMovieId,
                     CreatedAt = l.CreatedAt
