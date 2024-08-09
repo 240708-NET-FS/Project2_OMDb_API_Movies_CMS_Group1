@@ -1,67 +1,92 @@
-
 .user-profile-container {
-    background-color: var(--palette_black);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
+  background-color: var(--palette_black);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-  .user-profile-info {
-    display: flex;
-    flex-direction: row;
-    background-color: var(--palette_white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    gap: 20px;
-    flex-wrap: wrap; 
-  }
-  
 
-  .user-profile-details {
-    flex: 1;
-  }
-  
+.user-profile-info {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--palette_orange);
+  background-image: url(./src/images/bg-img.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-  .user-profile-details h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: var(--palette_black);
-  }
-  
-  .user-profile-details p {
-    margin: 5px 0;
-  }
+.user-profile-bg-layer {
+  background-color: var(--palette_orange);
+  opacity: 0.92;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+}
 
-  .user-profile-followers {
-    flex: 0 0 150px; 
-    max-height: 100%; 
-  }
-  
-  
-  .user-profile-followers h4 {
-    margin-bottom: 10px;
-    font-size: 20px;
-  }
-  
- 
-  .user-profile-followers ul {
-    list-style: none;
-    padding: 0;
-    margin: 10;
-    max-height: 100px; 
-    overflow-y: auto; 
-  }
-  
-  .user-profile-followers ul li {
-    margin: 0 10;
-  }
-  
+
+.user-profile-details {
+  flex: 1;
+  z-index: 1;
+}
+
+
+.user-profile-username {
+  margin-bottom: 10px;
+  font-size: 24px;
+
+}
+
+.user-profile-flname {
+  margin-bottom: 10px;
+  font-size: 20px;
+
+}
+
+.user-profile-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: rgb(255 255 255 / 80%);
+}
+
+.user-profile-followers {
+  flex: 0 0 150px;
+  max-height: 100%;
+  z-index: 1;
+}
+
+
+.user-profile-followers h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+
+.user-profile-followers ul {
+  list-style: none;
+  padding: 0;
+  margin: 10;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.user-profile-followers ul li {
+  margin: 0 10;
+}
   .user-profile-movies {
     background-color: var(--palette_white);
     padding: 20px;

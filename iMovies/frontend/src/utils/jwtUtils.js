@@ -19,3 +19,7 @@ export const isTokenExpired = (token) => {
     return true;
   }
 };
+
+export const getCurrentTimestamp = () => {
+  return new Date().toISOString();
+};

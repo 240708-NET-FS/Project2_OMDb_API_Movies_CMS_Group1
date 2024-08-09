@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './updatemoviemodal.css';
+import { getCurrentTimestamp } from '../../utils/fetchData';
 
 const UpdateMovieModal = ({ movie, onClose, onUpdate }) => {
   const [review, setReview] = useState(movie.review || '');
@@ -7,6 +8,7 @@ const UpdateMovieModal = ({ movie, onClose, onUpdate }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const userId = JSON.parse(localStorage.getItem('user')).userId;
+
 
   const handleUpdateMovie = async () => {
     // Validation
@@ -21,13 +23,14 @@ const UpdateMovieModal = ({ movie, onClose, onUpdate }) => {
       return;
     }
 
+   
+  
     setIsUpdating(true);
     setErrorMessage(''); 
     const requestBody = {
-      userId: userId,
-      omdbId: movie.omdbId,
       userRating: ratingValue,
-      userReview: review
+      userReview: review,
+      updatedAt: getCurrentTimestamp(),
     };
 
     try {

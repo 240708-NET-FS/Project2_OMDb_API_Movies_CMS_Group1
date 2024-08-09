@@ -3,119 +3,37 @@ import './feed.css';
 import DashBoard from '../../components/Dashboard/DashBoard';
 import SkeletonCard from '../../components/SkeletonCard/SkeletonCard';
 import MovieModal from '../../components/MovieModal/MovieModal';
-
-const API_KEY = ''; 
-
-const currentUser = JSON.parse(localStorage.getItem('user'));
-
-const topMovies = [
-  {
-    id: "101",
-    title: "The Shawshank Redemption",
-    year: "1994",
-    genre: "Drama",
-    poster: "/introsectionpicture.png",
-    likes: 1500,
-  },
-  {
-    id: "102",
-    title: "The Godfather",
-    year: "1972",
-    genre: "Crime, Drama",
-    poster: "/introsectionpicture.png",
-    likes: 1200,
-  },
-  {
-    id: "103",
-    title: "The Dark Knight",
-    year: "2008",
-    genre: "Action, Crime, Drama",
-    poster: "/introsectionpicture.png",
-    likes: 1100,
-  },
-  {
-    id: "104",
-    title: "Inception",
-    year: "2010",
-    genre: "Action, Adventure, Sci-Fi",
-    poster: "/introsectionpicture.png",
-    likes: 1000,
-  },
-  {
-    id: "105",
-    title: "Fight Club",
-    year: "1999",
-    genre: "Drama",
-    poster: "/introsectionpicture.png",
-    likes: 950,
-  }
-];
+import MovieCard from '../../components/MovieCard/MovieCard';
+import { fetchData, fetchTopMoviesWithDetails } from '../../utils/fetchData';
+import UserCard from '../../components/UserCard/UserCard';
 
 const Feed = () => {
   const [activities, setActivities] = useState([]);
-  const [isFollowing, setIsFollowing] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [movieDetails, setMovieDetails] = useState({});
-  const [selectedMovieId, setSelectedMovieId] = useState(null); // State for selected movie
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-  const [likedMovies, setLikedMovies] = useState([]); // State for liked movies
+  const [error, setError] = useState(false);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [topMovies, setTopMovies] = useState([]);
+  const [followevent, setFollowevent] = useState(false);
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const currentUser = JSON.parse(localStorage.getItem('user'));
-
-      const response = await fetch('http://localhost:5299/api/Users/users-with-movies');
-      const data = await response.json();
-      
-      // Filter out the current user
-      const filteredData = data.filter(user => user.userId !== currentUser.userId);
-
-      // Find the most recent activity timestamp for each user
-      const usersWithRecentActivity = filteredData.map(user => {
-        const mostRecentMovie = user.userMovies.reduce((latest, movie) => {
-          const movieTimestamp = new Date(movie.updatedAt || movie.createdAt).getTime();
-          return movieTimestamp > latest.timestamp ? { ...movie, timestamp: movieTimestamp } : latest;
-        }, { timestamp: 0 });
-        
-        return {
-          ...user,
-          mostRecentActivity: mostRecentMovie.timestamp
-        };
-      });
-
-      // Sort users based on most recent activity
-      usersWithRecentActivity.sort((a, b) => b.mostRecentActivity - a.mostRecentActivity);
-
-      setActivities(usersWithRecentActivity);
-      setIsFollowing(usersWithRecentActivity.map(user => ({ userId: user.userId, isFollowing: false })));
-
-      // Fetch movie details
-      const movieIds = new Set(filteredData.flatMap(user => user.userMovies.map(movie => movie.omdbId)));
-      const movieDetailsResponses = await Promise.all(
-        Array.from(movieIds).map(id =>
-          fetch(`https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`).then(response => response.json())
-        )
-      );
-
-      const movieDetailsMap = movieDetailsResponses.reduce((acc, movie) => {
-        acc[movie.imdbID] = movie;
-        return acc;
-      }, {});
-
-      setMovieDetails(movieDetailsMap);
-    } catch (error) {
-      console.error('Error fetching activities:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const getCurrentUser = () => JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetchData();
+    const loadData = async () => {
+      try {
+        // Fetch user activities and top movies
+        await fetchData(getCurrentUser, setActivities, setLoading);
+        await fetchTopMovieData();
+      } catch (err) {
+        console.error('Error usseffect:', err);
+        setError(true); 
+      }
+    };
+
+    loadData();
 
     const handleTokenChange = () => {
-      fetchData();
+      loadData();
     };
 
     window.addEventListener('tokenChanged', handleTokenChange);
@@ -125,24 +43,6 @@ const Feed = () => {
     };
   }, []);
 
-  const handleFollowToggle = (userId) => {
-    setIsFollowing(prevIsFollowing =>
-      prevIsFollowing.map(followStatus =>
-        followStatus.userId === userId
-          ? { ...followStatus, isFollowing: !followStatus.isFollowing }
-          : followStatus
-      )
-    );
-  };
-
-  const handleLikeToggle = (movieId) => {
-    setLikedMovies(prevLikedMovies =>
-      prevLikedMovies.includes(movieId)
-        ? prevLikedMovies.filter(id => id !== movieId)
-        : [...prevLikedMovies, movieId]
-    );
-  };
-
   const openModal = (movieId) => {
     setSelectedMovieId(movieId);
     setIsModalOpen(true);
@@ -151,6 +51,11 @@ const Feed = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedMovieId(null);
+  };
+
+  const fetchTopMovieData = async () => {
+    const topMoviesData = await fetchTopMoviesWithDetails();
+    setTopMovies(topMoviesData);
   };
 
   if (loading) {
@@ -164,6 +69,20 @@ const Feed = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="wrapper">
+        <DashBoard />
+        <div className="main-dashboard">
+          <div className="error-message">
+            <h2>Oops! Something went wrong.</h2>
+            <p>We couldn't load the data. Please try again later.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="wrapper">
       <DashBoard />
@@ -172,76 +91,57 @@ const Feed = () => {
         <div className="top-movies">
           <h3>Top Movies</h3>
           <div className="top-movie-list">
-            {topMovies.map(movie => (
-              <div key={movie.id} className="top-movie-card">
+            {topMovies.map((movie) => (
+              <div key={movie.omdbId} className="top-movie-card">
                 <img src={movie.poster} alt={movie.title} className="top-movie-poster" />
                 <div className="top-movie-details">
                   <h4>{movie.title}</h4>
                   <p className="bold">Year: {movie.year}</p>
                   <p className="bold">Genre: {movie.genre}</p>
-                  <p>Likes: {movie.likes}</p>
+                  <p className="bold">Average Rating: <span className="green">{movie.averageRating ? movie.averageRating.toFixed(1) : 'N/A'}</span></p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Activity Feed */}
-        {activities.map(activity => {
-          const followStatus = isFollowing.find(follow => follow.userId === activity.userId);
-          return (
+        
+        {/* User Activities Section */}
+        {activities.length === 0 ? (
+          <div className="no-activities-message">
+            <p>No recent activities to show. Follow users to see their activities and movies here!</p>
+          </div>
+        ) : (
+          activities.map((activity) => (
             <div key={activity.userId} className="activity-item">
-              <div className="feed-user-info">
-                <h4>{activity.userName}</h4>
-                {activity.userName !== currentUser.userName && (
-                  <button 
-                    className='button'
-                    onClick={() => handleFollowToggle(activity.userId)}
-                  >
-                    {followStatus?.isFollowing ? "Unfollow" : "Follow"}
-                  </button>
+              <UserCard
+                user={activity}
+                setFollowevent={setFollowevent}
+                followevent={followevent}
+              />
+              <div className="movies-list">
+                {activity.userMovies.length === 0 ? (
+                  <div className="no-movies-message">
+                    <p>{activity.userName} hasn't added any movies yet.</p>
+                  </div>
+                ) : (
+                  activity.userMovies.map((movie) => (
+                    <MovieCard
+                      key={movie.userMovieId}
+                      userMovieId={movie.userMovieId}
+                      imdbId={movie.omdbId}
+                      openModal={openModal}
+                    />
+                  ))
                 )}
               </div>
-              <div className="movies-list">
-                {activity.userMovies.map(movie => {
-                  const movieDetail = movieDetails[movie.omdbId] || {};
-                  return (
-                    <div key={movie.userMovieId} className="feed-movie-card">
-                      <img src={movieDetail.Poster || movie.poster} alt={movie.title} className="movie-poster" />
-                      <div className="movie-details">
-                        <h4>{movieDetail.Title || movie.title}</h4>
-                        <p className="bold">Year: {movieDetail.Year || movie.year}</p>
-                        <p className="bold">Genre: {movieDetail.Genre || movie.genre}</p>
-                        <p>Notes: {movie.userReview}</p>
-                        <p>Rating: {movie.userRating}</p>
-                        <div className="feed-action-buttons">
-                          <button 
-                            className="button" 
-                            onClick={() => handleLikeToggle(movie.omdbId)}
-                          >
-                            {likedMovies.includes(movie.omdbId) ? "Unlike" : "Like"}
-                          </button>
-                          <button 
-                            className="button"
-                            onClick={() => openModal(movie.omdbId)}
-                          >
-                            View More
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
-          );
-        })}
+          ))
+        )}
 
-        {/* Movie Modal */}
         {isModalOpen && selectedMovieId && (
-          <MovieModal 
-            movieId={selectedMovieId} 
-            onClose={closeModal} 
+          <MovieModal
+            movieId={selectedMovieId}
+            onClose={closeModal}
           />
         )}
       </div>

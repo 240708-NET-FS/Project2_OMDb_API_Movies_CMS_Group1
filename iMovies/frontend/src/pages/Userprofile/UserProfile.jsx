@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './userprofile.css';
 import Dashboard from '../../components/Dashboard/DashBoard';
-import SkeletonCard from '../../components/SkeletonCard/SkeletonCard'; 
+import SkeletonCard from '../../components/SkeletonCard/SkeletonCard';
 import UpdateMovieModal from '../../components/UpdateMovieModal/UpdateMovieModal';
 
 const UserProfile = () => {
@@ -9,59 +9,106 @@ const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [followers, setFollowers] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const userId = user?.userId;
   const username = user?.userName;
   const firstname = user?.firstName;
   const lastname = user?.lastName;
   const date = user?.createdAt;
-  const followers = ["Jane Smith", "Bob Johnson", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker", "Alice Brown", "Charlie Davis", "Eve Walker"];
   const OMDB_API_KEY = "";
 
+  const fetchFavoriteMovies = useCallback(async () => {
+    try {
+      const response = await fetch(`http://localhost:5299/api/UserMovies/user/${userId}`);
+      const movieData = await response.json();
 
-  useEffect(() => {
-    const fetchFavoriteMovies = async () => {
-      try {
-        const response = await fetch(`http://localhost:5299/api/UserMovies/user/${userId}`);
-        const movieData = await response.json();
+      const movieDetailsPromises = movieData.map(async (movie) => {
+        const omdbResponse = await fetch(`http://www.omdbapi.com/?i=${movie.omdbId}&apikey=${OMDB_API_KEY}`);
+        const omdbData = await omdbResponse.json();
+        
+        // Fetch the like count for the movie
+        const likesResponse = await fetch(`http://localhost:5299/api/Likes/usermovies/${movie.userMovieId}`);
+        let likesData = [];
+        if (likesResponse.ok) {
+          const textResponse = await likesResponse.text();
+          try {
+            likesData = JSON.parse(textResponse);
+          } catch (error) {
+            console.error('Invalid JSON response for likes:', textResponse);
+            if (textResponse.includes("No likes found for this movie")) {
+              likesData = [];
+            } else {
+              throw new Error('Failed to parse likes response');
+            }
+          }
+        } else if (likesResponse.status === 404) {
+          likesData = [];
+        } else {
+          throw new Error(`Failed to fetch likes with status ${likesResponse.status}`);
+        }
 
-        const movieDetailsPromises = movieData.map(async (movie) => {
-          const omdbResponse = await fetch(`http://www.omdbapi.com/?i=${movie.omdbId}&apikey=${OMDB_API_KEY}`);
-          const omdbData = await omdbResponse.json();
+        return {
+          id: movie.userMovieId,
+          title: omdbData.Title,
+          year: omdbData.Year,
+          genre: omdbData.Genre,
+          poster: omdbData.Poster,
+          addedAt: movie.createdAt,
+          rating: movie.userRating,
+          review: movie.userReview,
+          rated: omdbData.Rated,
+          released: omdbData.Released,
+          runtime: omdbData.Runtime,
+          director: omdbData.Director,
+          actors: omdbData.Actors,
+          plot: omdbData.Plot,
+          likeCount: likesData.length // Add like count
+        };
+      });
 
-          return {
-            id: movie.userMovieId,
-            title: omdbData.Title,
-            year: omdbData.Year,
-            genre: omdbData.Genre,
-            poster: omdbData.Poster,
-            addedAt: movie.createdAt,
-            rating: movie.userRating,
-            review: movie.userReview,
-            rated: omdbData.Rated,
-            released: omdbData.Released,
-            runtime: omdbData.Runtime,
-            director: omdbData.Director,
-            actors: omdbData.Actors,
-            plot: omdbData.Plot
-          };
-        });
-
-        const moviesWithDetails = await Promise.all(movieDetailsPromises);
-        setFavoriteMovies(moviesWithDetails);
-      } catch (error) {
-        console.error('Error fetching favorite movies:', error);
-      } finally {
-        setIsLoading(false); 
-      }
-    };
-
-    if (userId) {
-      fetchFavoriteMovies();
-    } else {
+      const moviesWithDetails = await Promise.all(movieDetailsPromises);
+      setFavoriteMovies(moviesWithDetails);
+    } catch (error) {
+      console.error('Error fetching favorite movies:', error);
+    } finally {
       setIsLoading(false); 
     }
   }, [userId]);
+
+  const fetchFollowers = useCallback(async () => {
+    try {
+      const response = await fetch(`http://localhost:5299/api/Followers/${userId}`);
+
+      if(response.ok)
+      {
+        const followers = await response.json();
+
+        const followerDetailsPromises = followers.map(async (follower) => {
+          const userResponse = await fetch(`http://localhost:5299/api/Users/${follower.followerUserId}`);
+          const userData = await userResponse.json();
+          return userData.userName;
+        });
+  
+        const usernames = await Promise.all(followerDetailsPromises);
+        setFollowers(usernames);
+      }
+
+    }catch(error)
+    {
+      console.log("!failed to get followers!");
+    }
+
+  }, [userId])
+
+  useEffect(() => {
+    if (userId) {
+      fetchFavoriteMovies();
+      fetchFollowers();
+    } else {
+      setIsLoading(false); 
+    }
+  }, [userId, fetchFavoriteMovies]);
 
   const handleUpdate = (movie) => {
     setSelectedMovie(movie); 
@@ -75,7 +122,7 @@ const UserProfile = () => {
 
   const handleDelete = async (movieId) => {
     const confirmed = window.confirm('Are you sure you want to delete this movie?');
-
+    console.log("movieID: ", movieId);
     if (confirmed) {
       try {
         const response = await fetch(`http://localhost:5299/api/UserMovies/${movieId}`, {
@@ -111,21 +158,26 @@ const UserProfile = () => {
     <div className='wrapper'>
       <Dashboard />
       <div className="user-profile-container">
-        <div className="user-profile-info">
+        <div className="user-profile-info"> 
+          <div class="user-profile-bg-layer"></div>
           <div className="user-profile-details">
-            <h2>{username}</h2>
-            <h2>{firstname} {lastname}</h2>
+            <h2 className="user-profile-username">{username}</h2>
+            <h2 className="user-profile-flname">{firstname} {lastname}</h2>
             <p>Joined: {new Date(date).toLocaleDateString()}</p>
           </div>
           <div className="user-profile-followers">
             <h4>Followers</h4>
-            <ul>
-              {followers.map((follower, index) => (
-                <li key={index}>{follower}</li>
-              ))}
-            </ul>
+            {followers.length === 0 ? (
+              <p>No users have followed you yet.</p>
+            ) : (
+              <ul>
+                {followers.map((follower, index) => (
+                  <li key={index}>{follower}</li>
+                ))}
+              </ul>
+            )}
           </div>
-        </div>
+          </div>
         <div className="user-profile-movies">
           <h3>Favorite Movies</h3>
           {favoriteMovies.length === 0 ? (
@@ -142,6 +194,7 @@ const UserProfile = () => {
                     <p><strong>Added on:</strong> {new Date(movie.addedAt).toLocaleDateString()}</p>
                     <p><strong>My Rating:</strong> {movie.rating}</p>
                     <p><strong>Review:</strong> {movie.review}</p>
+                    <p><strong>Likes:</strong> {movie.likeCount}</p> {/* Display like count */}
                     <div className="user-profile-movie-action-buttons">
                       <button className="button update-button" onClick={() => handleUpdate(movie)}>Update</button>
                       <button className="button delete-button" onClick={() => handleDelete(movie.id)}>Delete</button>

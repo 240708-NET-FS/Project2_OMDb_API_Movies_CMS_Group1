@@ -50,7 +50,7 @@
 .top-movie-details h4 {
   margin: 10px 0;
   font-size: 18px;
-  text-align: center;
+  text-align: left;
 }
 
 .top-movie-details p {
@@ -68,68 +68,24 @@
   gap: 20px;
 }
 
-.feed-movie-card {
-  width: 250px;
-  background-color: var(--palette_white);
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  padding: 10px;
-  flex: 0 0 auto;
-}
-
-.movie-poster {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.movie-details {
-  padding: 10px;
-  text-align: left;
-}
-
-.movie-details h4 {
-  margin: 10px 0;
-  font-size: 18px;
-  text-align: center;
-}
-
-.movie-details p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.movie-details .bold {
-  font-weight: bold;
-}
 
 .activity-item {
   margin-bottom: 20px;
 }
 
-.user-info h4 {
-  margin: 0;
+.green{
+  color: green;
 }
 
-.feed-user-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  background-color: var(--palette_white);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+.error-message{
+  color: red;
 }
 
-
-.feed-action-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
+.no-activities-message{
+  color: white;
 }
 
+.no-movies-message{
+  color: white;
+  padding-left: 20px;
+}
