@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OMDbProject.Models.DTOs;
 
 
 namespace OMDbProject.Models;
@@ -16,7 +17,7 @@ namespace OMDbProject.Models;
         public DbSet<Follower> Followers { get; set; }
         
         // If using a view for movie ranking
-        // public DbSet<MovieRank> MovieRanks { get; set; }
+        public DbSet<MovieRankDTO> MovieRanks { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,11 +84,24 @@ namespace OMDbProject.Models;
             });
 
             // If using a view for movie ranking
-            // modelBuilder.Entity<MovieRank>(entity =>
-            // {
-            //     entity.HasNoKey();
-            //     entity.ToView("MovieRanks"); // Specify the view name in the database
-            // });
-        }
+             modelBuilder.Entity<MovieRankDTO>(entity =>
+             {
+                 entity.HasNoKey();
+                 entity.ToView("MovieRanks"); // Specify the view name in the database
+                 
+             });
+
+             // Configurations for MovieRankDTO entity
+                modelBuilder.Entity<MovieRankDTO>(entity =>
+                {
+                    entity.HasNoKey(); // Specify that this entity has no key
+                    entity.ToView("MovieRanks"); // Map to the existing view in the database
+
+                    // Specify the column types for decimal properties
+                    entity.Property(e => e.AverageRating).HasColumnType("decimal(2, 1)"); //precision and scale
+         });
+
+
+        } //OnModelCreating method closing curly brace
     }
 

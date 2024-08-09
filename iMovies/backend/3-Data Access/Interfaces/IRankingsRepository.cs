@@ -2,10 +2,10 @@ using OMDbProject.Models.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OMDbProject.Services.Interfaces;
-
-    public interface IRankingService
+namespace OMDbProject.Repositories.Interfaces
+{
+    public interface IRankingsRepository
     {
         Task<List<MovieRankDTO>> GetTopRankedMoviesAsync();
     }
-
+}

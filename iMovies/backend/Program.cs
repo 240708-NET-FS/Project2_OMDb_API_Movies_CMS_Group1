@@ -60,6 +60,10 @@ builder.Services.AddScoped<IUserMovieRepository, UserMovieRepository>();
 builder.Services.AddScoped<IFollowerService, FollowerService>();
 builder.Services.AddScoped<IFollowerRepository, FollowerRepository>();
 
+builder.Services.AddScoped<IRankingsRepository, RankingsRepository>();
+builder.Services.AddScoped<IRankingService, RankingService>();
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
