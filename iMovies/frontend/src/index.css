@@ -27,5 +27,45 @@ html, body{
   box-sizing: border-box;
 }
 
+/* Global responsive wrapper */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--palette_black);
+  overflow: hidden;
+}
+
+
+/* Global Styles for all buttons */
+
+.button {
+  color: var(--palette_white);
+  background-color: var(--palette_purple);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--palette_orange);
+  color: var(--palette_black);
+}
+
+
+
+/* Global Styles for All Movie Lists */
+.movies-list {
+  display: flex;
+  overflow-x: scroll;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+
+
 
 

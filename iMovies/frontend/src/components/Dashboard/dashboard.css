@@ -1,0 +1,42 @@
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 20px; 
+    background-color: var(--palette_purple);
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  
+  .tab {
+    color: var(--palette_white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+  
+  .tab:hover, .tab.active {
+    background-color: var(--palette_orange);
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .tabs {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }

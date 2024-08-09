@@ -1,132 +1,159 @@
-.user-profile {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.user-profile-container {
+  background-color: var(--palette_black);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.user-info {
+
+.user-profile-info {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--palette_orange);
+  background-image: url(./src/images/bg-img.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.user-profile-bg-layer {
+  background-color: var(--palette_orange);
+  opacity: 0.92;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+}
+
+
+.user-profile-details {
+  flex: 1;
+  z-index: 1;
+}
+
+
+.user-profile-username {
+  margin-bottom: 10px;
+  font-size: 24px;
+
+}
+
+.user-profile-flname {
+  margin-bottom: 10px;
+  font-size: 20px;
+
+}
+
+.user-profile-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: rgb(255 255 255 / 80%);
+}
+
+.user-profile-followers {
+  flex: 0 0 150px;
+  max-height: 100%;
+  z-index: 1;
+}
+
+
+.user-profile-followers h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+
+.user-profile-followers ul {
+  list-style: none;
+  padding: 0;
+  margin: 10;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.user-profile-followers ul li {
+  margin: 0 10;
+}
+  .user-profile-movies {
     background-color: var(--palette_white);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.user-info h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-.user-info p {
-    margin: 5px 0;
-}
-
-.followers-list {
-    margin-top: 10px;
-}
-
-.followers-list h4 {
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
-.followers-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.followers-list ul li {
-    margin: 5px 0;
-}
-
-.favorite-movies {
-    background-color: var(--palette_white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.favorite-movies h3 {
+  }
+  
+  .user-profile-movies h3 {
     margin-bottom: 10px;
     font-size: 22px;
-}
-
-.movies-list {
-    display: flex;
-    overflow-x: scroll;
-    gap: 20px;
-    padding-bottom: 10px;
-}
-
-.movie-item {
-    flex: 0 0 auto;
-    width: 150px;
+  }
+  
+  .user-profile-movie-card {
+    width: 250px;
     background-color: var(--palette_white);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
-}
+    padding: 10px;
+    flex: 0 0 auto;
+  }
 
-.movie-poster {
+  .user-profile-movie-poster {
     width: 100%;
     height: auto;
-}
-
-.movie-details {
+    border-radius: 8px;
+  }
+  
+  .user-profile-movie-details {
     padding: 10px;
-}
-
-.movie-details h4 {
+    text-align: left;
+  }
+  
+  .user-profile-movie-details h4 {
     margin: 10px 0;
     font-size: 18px;
-}
-
-.movie-details p {
+    text-align: center;
+  }
+  
+  .user-profile-movie-details p {
     margin: 5px 0;
-}
+    font-size: 14px;
+  }
 
-.action-buttons {
+  .user-profile-movie-action-buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
-}
-
-.button {
+  }
+  
+  .user-profile-loading {
     color: var(--palette_white);
-    background-color: var(--palette_purple);
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-}
+  }
 
-.button:hover {
-    background-color: var(--palette_orange);
-    color: var(--palette_black);
-}
-
-.update-button {
-    background-color: var(--palette_purple);
-}
-
-.delete-button {
-    background-color: var(--palette_purple);
-}
-
-.like-button {
-    background-color: var(--palette_yellow);
-}
-
-.like-button.liked {
-    background-color: var(--palette_yellow);
-}
-
-.follow-button {
-    background-color: var(--palette_yellow);
-    margin-top: 10px;
-}
+  .user-profile-movie-cards {
+    display: flex; 
+    gap: 10px; 
+  }
+  
+  @media (max-width: 768px) {
+    .user-profile-info {
+      flex-direction: column;
+    }    
+    .user-profile-followers {
+      flex: 1; 
+      max-height: none;
+    }
+  }

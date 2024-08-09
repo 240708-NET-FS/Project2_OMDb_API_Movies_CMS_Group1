@@ -8,16 +8,16 @@
 }
 
 .title {
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    color: var(--palette_white);
-    font-family: sans-serif;
-    font-size: 3rem; 
-    margin-bottom: 40px; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: var(--palette_white);
+  font-family: sans-serif;
+  font-size: 3rem; 
+  margin-bottom: 40px; 
 }
 
 .welcome_section {
@@ -49,7 +49,7 @@
 
 .logo-image {
     height: 50px; 
-    margin-right: 10px;
+    margin-right: 10px; 
 }
 
 .welcome_section p {
@@ -66,35 +66,22 @@
     aspect-ratio: 1/.7;
     border-radius: 15%;
     border: 0.3rem solid;
+
     box-shadow: 0 3px 10px var(--palette_purple);
 }
 
-.action-buttons {
+.home-buttons {
     display: flex;
     justify-content: center; 
     gap: 15px;
     margin-top: 20px;
 }
 
-.button {
-    color: var(--palette_white);
-    background-color: var(--palette_purple);
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: bold;
-    display: inline-block;
-}
 
-.button:hover {
-    background-color: var(--palette_orange);
-    color: var(--palette_black);
-}
 
 @media (min-width: 768px) {
     .welcome_section {
-        grid-template-columns: 1fr 1fr; 
+        grid-template-columns: 1fr 1fr;
         grid-template-areas: 
             "image text"
             "image buttons";
@@ -109,9 +96,13 @@
         grid-area: text; 
     }
 
-    .action-buttons {
+    .home-buttons {
         grid-area: buttons; 
         justify-content: center; 
+    }
+
+    .button {
+        width: 200px; /* Adjust width for larger screens */
     }
 }
 
@@ -121,11 +112,7 @@
         text-align: center;
     }
 
-    .action-buttons {
-        display: flex;
-        justify-content: space-between; 
-        gap: 15px; 
-        margin-top: 20px;
-        width: 100%; 
+    .home-buttons {
+        flex-direction: column; 
     }
 }

@@ -6,8 +6,11 @@ import SignUp from './pages/Signup/SignUp';
 import Layout from './components/Layout/Layout';
 import './index.css';
 import Login from './pages/Login/Login';
-import Landing from './pages/Landing/Landing';
 import UserProfile from './pages/Userprofile/UserProfile';
+import Feed from './pages/Feed/Feed';
+import AddMovies from './pages/AddMovies/AddMovies';
+import Following from './pages/Following/Following';
+import PrivateRoutes from './components/PrivateRoutes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
@@ -16,9 +19,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route index element={<Home />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
-        <Route path="landing" element={<Landing />} />
-        <Route path="userprofile" element={<UserProfile/>} />
+
+        <Route element={<PrivateRoutes />}>
+            <Route path="userprofile" element={<UserProfile />} />
+            <Route path="feed" element={<Feed />} />
+            <Route path="addmovies" element={<AddMovies />} />
+            <Route path="following" element={<Following />} />
+          </Route>
+
       </Route>
     </Routes>
-  </Router>
+    </Router>
 );

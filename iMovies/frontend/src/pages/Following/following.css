@@ -1,0 +1,30 @@
+.main-dashboard {
+    background-color: var(--palette_black);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .movie-card-list {
+    display: flex;
+    overflow-x: scroll;
+    gap: 20px;
+  }
+  
+  .activity-item {
+    margin-bottom: 20px;
+  }
+  
+  .green{
+    color: green;
+  }
+  
+  .error-message{
+    color: red;
+  }
+
+  .no-following-message{
+    color: white;
+  }
+  
