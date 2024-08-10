@@ -11,7 +11,7 @@ const AddMovies = () => {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
-  const key = "";
+  const key = import.meta.env.VITE_OMDB_API_KEY;
 
   useEffect(() => {
     const fetchPopularMovies = async () => {

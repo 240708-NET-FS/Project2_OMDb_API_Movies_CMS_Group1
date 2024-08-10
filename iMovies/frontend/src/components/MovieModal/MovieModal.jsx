@@ -9,7 +9,7 @@ const MovieModal = ({ movieId, onClose }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const userId = JSON.parse(localStorage.getItem('user')).userId;
-  const OMDB_API_KEY = "";
+  const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
   useEffect(() => {
     const fetchMovieDetails = async () => {

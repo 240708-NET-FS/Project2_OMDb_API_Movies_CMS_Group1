@@ -1,4 +1,4 @@
-const OMDB_API_KEY = "";
+const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 const OMDB_API_URL = 'http://www.omdbapi.com/';
 
 //Fetches Data for the Feed Component
@@ -10,10 +10,10 @@ export const fetchData = async (
   try {
     
     setLoading(true);
-    const currentUser = getCurrentUser(); // Get the current logged-in user
+    const currentUser = getCurrentUser();
 
     if (!currentUser) {
-      throw new Error('No user logged in'); // If no user is logged in, throw an error
+      throw new Error('No user logged in'); 
     }
 
     // Fetch data for all users with their movie lists from the backend
