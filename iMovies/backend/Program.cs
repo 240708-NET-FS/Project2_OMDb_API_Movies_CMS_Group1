@@ -3,6 +3,8 @@ using OMDbProject.Services.Interfaces;
 using OMDbProject.Models;
 using OMDbProject.Repositories.Interfaces;
 using OMDbProject.Repositories;
+using OMDbProject.Utilities;
+using OMDbProject.Utilities.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,11 +21,13 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSet
 builder.Services.AddControllers();
 
 //CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS 
-builder.Services.AddCors(co => {
-    co.AddPolicy("CORS" , pb =>{
+builder.Services.AddCors(co =>
+{
+    co.AddPolicy("CORS", pb =>
+    {
         pb.WithOrigins("*")
         .AllowAnyHeader()
-        .AllowAnyMethod(); 
+        .AllowAnyMethod();
     });
 });
 //CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS CORS
@@ -63,8 +67,10 @@ builder.Services.AddScoped<IFollowerRepository, FollowerRepository>();
 builder.Services.AddScoped<IRankingsRepository, RankingsRepository>();
 builder.Services.AddScoped<IRankingService, RankingService>();
 
+builder.Services.AddScoped<IHasher, Hasher>();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Logging.AddConsole();

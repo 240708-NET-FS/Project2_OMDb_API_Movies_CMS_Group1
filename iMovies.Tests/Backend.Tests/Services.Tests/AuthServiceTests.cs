@@ -1,221 +1,108 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using OMDbProject.Models;
-using OMDbProject.Models.DTOs;
-using OMDbProject.Repositories.Interfaces;
+namespace Backend.Tests;
+
 using OMDbProject.Services;
 using OMDbProject.Repositories;
+using OMDbProject.Services.Interfaces;
+using OMDbProject.Repositories.Interfaces;
+using OMDbProject.Utilities.Interfaces;
+using OMDbProject.Models.DTOs;
+using OMDbProject.Models;
+using Moq;
 using Xunit;
-using Microsoft.Extensions.Options;
-
-using System.Security.Cryptography;
-using System.Security.Claims;
-using System.Text;
-
+using System.Threading.Tasks;
 
 public class AuthServiceTests
 {
-
-    private readonly DbContextOptions<ApplicationDbContext> _options;
-    private readonly IOptions<JwtSettings> _jwtSettings;
-
+    private readonly Mock<IUserRepository> _mockUserRepository;
+    private readonly Mock<IHasher> _mockHasher;
+    private readonly AuthService _authService;
 
     public AuthServiceTests()
     {
-        _options = new DbContextOptionsBuilder<ApplicationDbContext>()
-           .UseInMemoryDatabase(databaseName: "TestDatabase123" + Guid.NewGuid())
-           .Options;
-
-        _jwtSettings = Options.Create(new JwtSettings
-        {
-            Secret = "this_is_my_secret_key_this_has_to_be_long_enough_to_work",
-            ExpiryInMinutes = 30
-        });
-
+        _mockUserRepository = new Mock<IUserRepository>();
+        _mockHasher = new Mock<IHasher>();
+        _authService = new AuthService(_mockUserRepository.Object, _mockHasher.Object);
     }
 
-    private void SeedDatabase()
+    [Fact]
+    public async Task LoginAsync_ShouldReturnUserResponseDTO_WhenCredentialsAreValid()
     {
-        var context = new ApplicationDbContext(_options);
-
-        // Clear existing data
-        context.Database.EnsureDeleted();
-        context.Database.EnsureCreated();
-
-        // Seed data
-        var password = "password";
-        var salt = "saltsaltsalt";
-        byte[] saltBytes = Convert.FromBase64String(salt);
-        using var hmac = new HMACSHA512(saltBytes);
-        var passwordHash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
+        // Arrange
+        var loginDTO = new LoginDTO { UserName = "validUser", Password = "validPassword" };
 
         var user = new User
         {
             UserId = 1,
-            UserName = "testuser",
-            FirstName = "Owusu",
-            LastName = "Achamfour",
-            PasswordHash = passwordHash,
-            Salt = salt,
-            CreatedAt = DateTime.UtcNow
-        };
-
-        context.Users.Add(user);
-        context.SaveChanges();
-    }
-
-    [Fact]
-    public async Task LoginAsync_ValidCredentials_ReturnsUserResponseDTO()
-    {
-        // Arrange
-        // Seed database before test
-        SeedDatabase();
-
-        // Use a single context instance throughout the test
-        using var context = new ApplicationDbContext(_options);
-        var userRepository = new UserRepository(context);
-        var authService = new AuthService(userRepository, _jwtSettings);
-
-
-        var loginDTO = new LoginDTO
-        {
-            UserName = "testuser",
-            Password = "password"
-        };
-
-        // Act
-        var result = await authService.LoginAsync(loginDTO);
-
-        // Assert
-        Assert.Equal("testuser", result.UserName);
-    }
-
-
-
-    [Fact]
-    public async Task LoginAsync_InvalidUsername_ThrowsUnauthorizedAccessException()
-    {
-        // Arrange
-        // Seed database before test
-        SeedDatabase();
-
-        // Create a new instance of the mock user repository for this test
-        var mockUserRepository = new Mock<IUserRepository>();
-
-        // Verify that the mockUserRepository is not null
-        Assert.NotNull(mockUserRepository);
-
-        // Set up the mock to return null for an invalid username
-        mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync("invaliduser"))
-            .ReturnsAsync((User)null);
-
-        // Create an instance of AuthService with the new mock repository
-        var authService = new AuthService(mockUserRepository.Object, _jwtSettings);
-
-        var loginDTO = new LoginDTO
-        {
-            UserName = "invaliduser",
-            Password = "password"
-        };
-
-        // Act
-        Func<Task> act = async () => await authService.LoginAsync(loginDTO);
-
-        // Assert
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(act);
-    }
-
-
-
-
-    [Fact]
-    public async Task LoginAsync_InvalidPassword_ThrowsUnauthorizedAccessException()
-    {
-        // Arrange
-        var user = new User
-        {
-            UserId = 1,
-            UserName = "testuser",
-            PasswordHash = "passwordHash",
+            UserName = loginDTO.UserName,
+            PasswordHash = "hashedPassword",
             Salt = "salt"
         };
 
-        var loginDTO = new LoginDTO
-        {
-            UserName = "testuser",
-            Password = "wrongpassword"
-        };
-
-        var mockUserRepository = new Mock<IUserRepository>();
-        mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(loginDTO.UserName))
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(loginDTO.UserName))
             .ReturnsAsync(user);
 
-        var authService = new AuthService(mockUserRepository.Object, _jwtSettings);
+        _mockHasher.Setup(hasher => hasher.VerifyPassword(loginDTO.Password, user.PasswordHash, user.Salt))
+            .Returns(true);
 
-        // Act & Assert
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => authService.LoginAsync(loginDTO));
-    }
-
-
-
-    /*
-        [Fact]
-        public async Task LoginAsync_ValidCredentials_GeneratesJwtToken()
-        {
-            // Arrange
-            var user = new User
-            {
-                UserId = 1,
-                UserName = "testuser",
-                PasswordHash = "passwordHash",
-                Salt = "salt"
-            };
-
-            var loginDTO = new LoginDTO
-            {
-                UserName = "testuser",
-                Password = "password"
-            };
-
-
-
-            var mockUserRepository = new Mock<IUserRepository>();
-            mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(loginDTO.UserName))
-                .ReturnsAsync(user);
-
-
-            var authService = new AuthService(mockUserRepository.Object, _jwtSettings);
-
-            // Act
-            var result = await authService.LoginAsync(loginDTO);
-
-            // Assert
-            Assert.NotNull(result.Token);
-        }
-
-    */
-
-    [Fact]
-    public async Task LogoutAsync_CompletesSuccessfully()
-    {
-        //Arrange
-        var mockUserRepository = new Mock<IUserRepository>();
-        var authService = new AuthService(mockUserRepository.Object, _jwtSettings);
+        _mockHasher.Setup(hasher => hasher.GenerateJwtToken(user))
+            .Returns("generatedJwtToken");
 
         // Act
-        await authService.LogoutAsync();
+        var result = await _authService.LoginAsync(loginDTO);
 
         // Assert
-        Assert.True(true); // No exception thrown
+        Assert.NotNull(result);
+        Assert.Equal(user.UserName, result.UserName);
+        Assert.Equal("generatedJwtToken", result.Token);
+    }
+
+    [Fact]
+    public async Task LoginAsync_ShouldThrowUnauthorizedAccessException_WhenUserNameIsNotFound()
+    {
+        // Arrange
+        var loginDTO = new LoginDTO { UserName = "nonExistentUser", Password = "password" };
+
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(loginDTO.UserName))
+            .ReturnsAsync((User)null);
+
+        // Act
+        var exception = await Record.ExceptionAsync(() => _authService.LoginAsync(loginDTO));
+
+        // Assert
+        Assert.NotNull(exception);
+        Assert.IsType<UnauthorizedAccessException>(exception);
+        Assert.Equal("Invalid username or password.", exception.Message);
     }
 
 
 
+    [Fact]
+    public async Task LoginAsync_ShouldThrowUnauthorizedAccessException_WhenPasswordIsInvalid()
+    {
+        // Arrange
+        var loginDTO = new LoginDTO { UserName = "validUser", Password = "invalidPassword" };
+
+        var user = new User
+        {
+            UserId = 1,
+            UserName = loginDTO.UserName,
+            PasswordHash = "hashedPassword",
+            Salt = "salt"
+        };
+
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(loginDTO.UserName))
+            .ReturnsAsync(user);
+
+        _mockHasher.Setup(hasher => hasher.VerifyPassword(loginDTO.Password, user.PasswordHash, user.Salt))
+            .Returns(false);
+
+        // Act
+        var exception = await Record.ExceptionAsync(() => _authService.LoginAsync(loginDTO));
+
+        // Assert
+        Assert.NotNull(exception);
+        Assert.IsType<UnauthorizedAccessException>(exception);
+        Assert.Equal("Invalid username or password.", exception.Message);
+    }
 
 }
-
-
-
-

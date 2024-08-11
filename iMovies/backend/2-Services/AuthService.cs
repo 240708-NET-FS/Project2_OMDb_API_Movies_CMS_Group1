@@ -10,18 +10,20 @@ using System.Security.Claims;
 using System.Text;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
+using OMDbProject.Utilities;
+using OMDbProject.Utilities.Interfaces;
 
 namespace OMDbProject.Services;
 
 public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
-    private readonly JwtSettings _jwtSettings;
+    private readonly IHasher _hasher;
 
-    public AuthService(IUserRepository userRepository, IOptions<JwtSettings> jwtSettings)
+    public AuthService(IUserRepository userRepository, IHasher hasher)
     {
         _userRepository = userRepository;
-        _jwtSettings = jwtSettings.Value;
+        _hasher = hasher;
     }
 
 
@@ -37,25 +39,22 @@ public class AuthService : IAuthService
             throw new UnauthorizedAccessException("Invalid username or password.");
         }
 
-        //Output for debugging
-        Console.WriteLine("user.UserName:" + user.UserName);
 
         // Retrieve the stored password hash and salt
         var storedHash = user.PasswordHash;
         var storedSalt = user.Salt;
 
-        Console.WriteLine("storedHash:" + storedHash);
-        Console.WriteLine("storedSalt:" + storedSalt);
-
         // Verify the provided password
-        if (!VerifyPassword(loginDTO.Password, storedHash, storedSalt))
+        if (!_hasher.VerifyPassword(loginDTO.Password, storedHash, storedSalt))
         {
             // Password does not match
             throw new UnauthorizedAccessException("Invalid username or password.");
         }
 
         //Generate and return JWT token if password is correct
-        var JwtToken = GenerateJwtToken(user);
+
+        var JwtToken = _hasher.GenerateJwtToken(user);
+
 
         return new UserResponseDTO
         {
@@ -78,50 +77,5 @@ public class AuthService : IAuthService
 
 
 
-    //Helper Methods
-
-    private bool VerifyPassword(string password, string storedHash, string storedSalt)
-    {
-        byte[] saltBytes = Convert.FromBase64String(storedSalt);
-        Console.WriteLine("saltBytes: " + saltBytes);
-        using var hmac = new HMACSHA512(saltBytes);
-        Console.WriteLine("hmac: " + hmac);
-        byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-        Console.WriteLine("computedHash: " + computedHash);
-        string computedHashString = Convert.ToBase64String(computedHash);
-        Console.WriteLine("computedHashString:" + computedHashString);
-        return computedHashString == storedHash;
-    }
-
-
-    private string GenerateJwtToken(User user)
-    {
-        Console.WriteLine("GenerateJwtToken() is running");
-
-        var tokenHandler = new JwtSecurityTokenHandler();
-        Console.WriteLine("tokenHandler: " + tokenHandler);
-
-        Console.WriteLine("JWT Secret: " + _jwtSettings.Secret);
-
-        //GetBytes(): This has to return at least 32 bytes. 
-        //And bytes do not necessarily equal number of characters 
-        var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
-
-        Console.WriteLine("key (Base64): " + Convert.ToBase64String(key));
-
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryInMinutes),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        Console.WriteLine("token from GenerateJwtToken(): " + token);
-        return tokenHandler.WriteToken(token);
-    }
 }
 
