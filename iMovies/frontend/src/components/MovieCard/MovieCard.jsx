@@ -10,7 +10,7 @@ const MovieCard = ({ userMovieId, imdbId, openModal, userReview , userRating }) 
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
+  const OMDB_API_KEY = process.env.VITE_OMDB_API_KEY;
 
   const getCurrentUser = () => JSON.parse(localStorage.getItem('user'));
 

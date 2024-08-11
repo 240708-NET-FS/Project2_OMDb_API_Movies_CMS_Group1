@@ -1,4 +1,4 @@
-const OMDB_API_KEY = import.meta.env.VITE_OMDB_API_KEY;
+const OMDB_API_KEY = process.env.VITE_OMDB_API_KEY;
 const OMDB_API_URL = 'http://www.omdbapi.com/';
 
 //Fetches Data for the Feed Component
@@ -8,7 +8,7 @@ export const fetchData = async (
   setLoading
 ) => {
   try {
-    
+
     setLoading(true);
     const currentUser = getCurrentUser();
 

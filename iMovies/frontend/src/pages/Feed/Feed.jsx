@@ -89,7 +89,7 @@ const Feed = () => {
       <div className="main-dashboard">
         {/* Top Movies Section */}
         <div className="top-movies">
-          <h3>Top Movies</h3>
+          <h1>Top Movies</h1>
           <div className="top-movie-list">
             {topMovies.map((movie) => (
               <div key={movie.omdbId} className="top-movie-card">
@@ -103,6 +103,7 @@ const Feed = () => {
               </div>
             ))}
           </div>
+          <h1>Feed</h1>
         </div>
         
         {/* User Activities Section */}
