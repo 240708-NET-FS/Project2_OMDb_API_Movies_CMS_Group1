@@ -199,7 +199,7 @@ public class FollowerRepositoryTests
         // Act
         var result = await repository.GetFollowingWithMoviesAsync(userId);
 
-        // Assert
+        // Assert: result will not be empty and each user has movies
         Assert.NotEmpty(result);
 
         // Verify that each user in the result has movies

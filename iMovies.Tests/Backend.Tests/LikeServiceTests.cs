@@ -26,7 +26,7 @@ namespace OMDbProject.Tests;
         public async Task AddLikeAsync_ShouldReturnFalse_WhenLikeAlreadyExists()
         {
             // Arrange
-            var likeDTO = new LikeDTO { UserId = 1, UserMovieId = 1 };
+            var likeDTO = new LikeDTORequest { UserId = 1, UserMovieId = 1 };
             _mockLikeRepository
                 .Setup(repo => repo.GetLikeByUserAndMovieAsync(likeDTO.UserId, likeDTO.UserMovieId))
                 .ReturnsAsync(new Like()); // Simulate existing like
@@ -42,7 +42,7 @@ namespace OMDbProject.Tests;
         public async Task AddLikeAsync_ShouldReturnTrue_WhenLikeDoesNotExist()
         {
             // Arrange
-            var likeDTO = new LikeDTO { UserId = 1, UserMovieId = 1 };
+            var likeDTO = new LikeDTORequest { UserId = 1, UserMovieId = 1 };
             _mockLikeRepository
                 .Setup(repo => repo.GetLikeByUserAndMovieAsync(likeDTO.UserId, likeDTO.UserMovieId))
                 .ReturnsAsync((Like)null); // Simulate no existing like
