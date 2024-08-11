@@ -225,12 +225,13 @@ var assemblies = [
       { "name": "OMDbProject.Models.DTOs.FollowerDTO", "rp": "backend_FollowerDTO.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 10, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.FollowerResponseDTO", "rp": "backend_FollowerResponseDTO.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.LikeDTO", "rp": "backend_LikeDTO.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Models.DTOs.LoginDTO", "rp": "backend_LoginDTO.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 10, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Models.DTOs.LikeDTORequest", "rp": "backend_LikeDTORequest.html", "cl": 2, "ucl": 1, "cal": 3, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Models.DTOs.LoginDTO", "rp": "backend_LoginDTO.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 10, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.MovieRankDTO", "rp": "backend_MovieRankDTO.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.UserMovieDTO", "rp": "backend_UserMovieDTO.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 15, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.UserRegistrationDTO", "rp": "backend_UserRegistrationDTO.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.UserRegistrationResponseDTO", "rp": "backend_UserRegistrationResponseDTO.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Models.DTOs.UserResponseDTO", "rp": "backend_UserResponseDTO.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Models.DTOs.UserResponseDTO", "rp": "backend_UserResponseDTO.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.DTOs.UserWithMoviesDTO", "rp": "backend_UserWithMoviesDTO.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 10, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.Follower", "rp": "backend_Follower.html", "cl": 4, "ucl": 2, "cal": 6, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.JwtSettings", "rp": "backend_JwtSettings.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
@@ -238,16 +239,17 @@ var assemblies = [
       { "name": "OMDbProject.Models.User", "rp": "backend_User.html", "cl": 8, "ucl": 3, "cal": 11, "tl": 42, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Models.UserMovie", "rp": "backend_UserMovie.html", "cl": 7, "ucl": 2, "cal": 9, "tl": 38, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Repositories.FollowerRepository", "rp": "backend_FollowerRepository.html", "cl": 48, "ucl": 3, "cal": 51, "tl": 91, "cb": 3, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Repositories.LikeRepository", "rp": "backend_LikeRepository.html", "cl": 0, "ucl": 28, "cal": 28, "tl": 57, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Repositories.LikeRepository", "rp": "backend_LikeRepository.html", "cl": 28, "ucl": 0, "cal": 28, "tl": 57, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Repositories.RankingsRepository", "rp": "backend_RankingsRepository.html", "cl": 0, "ucl": 17, "cal": 17, "tl": 36, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Repositories.UserMovieRepository", "rp": "backend_UserMovieRepository.html", "cl": 0, "ucl": 37, "cal": 37, "tl": 71, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Repositories.UserRepository", "rp": "backend_UserRepository.html", "cl": 0, "ucl": 49, "cal": 49, "tl": 81, "cb": 0, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Services.AuthService", "rp": "backend_AuthService.html", "cl": 8, "ucl": 55, "cal": 63, "tl": 124, "cb": 0, "tb": 14, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Repositories.UserMovieRepository", "rp": "backend_UserMovieRepository.html", "cl": 37, "ucl": 0, "cal": 37, "tl": 71, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Repositories.UserRepository", "rp": "backend_UserRepository.html", "cl": 49, "ucl": 0, "cal": 49, "tl": 81, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Services.AuthService", "rp": "backend_AuthService.html", "cl": 26, "ucl": 3, "cal": 29, "tl": 81, "cb": 4, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.FollowerService", "rp": "backend_FollowerService.html", "cl": 31, "ucl": 0, "cal": 31, "tl": 67, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.LikeService", "rp": "backend_LikeService.html", "cl": 34, "ucl": 0, "cal": 34, "tl": 68, "cb": 4, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.RankingService", "rp": "backend_RankingService.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.UserMovieService", "rp": "backend_UserMovieService.html", "cl": 47, "ucl": 2, "cal": 49, "tl": 91, "cb": 1, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Services.UserService", "rp": "backend_UserService.html", "cl": 52, "ucl": 3, "cal": 55, "tl": 106, "cb": 4, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Services.UserService", "rp": "backend_UserService.html", "cl": 39, "ucl": 3, "cal": 42, "tl": 86, "cb": 4, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Utilities.Hasher", "rp": "backend_Hasher.html", "cl": 49, "ucl": 0, "cal": 49, "tl": 88, "cb": 5, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -256,17 +258,9 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "backend", "class": "OMDbProject.Services.AuthService", "reportPath": "backend_AuthService.html", "methodName": "VerifyPassword(System.String,System.String,System.String)", "methodShortName": "VerifyPassword(...)", "fileIndex": 0, "line": 81,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
 ];
 
 var branchCoverageAvailable = true;
