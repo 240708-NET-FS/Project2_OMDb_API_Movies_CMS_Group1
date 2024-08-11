@@ -210,5 +210,43 @@ public class UserMovieRepositoryTests
     }
 
 
+    [Fact]
+    public async Task DeleteUserMovieAsync_LikeExists_ReturnsTrue()
+    {
+        // Arrange
+        SeedDatabase();  // Seed the database with known data
+
+        using var context = CreateContext();
+        var repository = new UserMovieRepository(context);
+
+        int id = 1;  // Ensure this ID exists in the seeded data
+
+        // Act
+        var result = await repository.DeleteUserMovieAsync(id);
+
+        // Assert
+        Assert.True(result);  // Should be true if deletion is successful
+        Assert.Null(await context.UserMovies.FindAsync(id));  // The user movie should be removed
+    }
+
+    [Fact]
+    public async Task DeleteUserMovieAsync_LikeDoesNotExist_ReturnsFalse()
+    {
+        // Arrange
+        SeedDatabase();  // Seed the database with known data
+
+        using var context = CreateContext();
+        var repository = new UserMovieRepository(context);
+
+        int id = 999;  // Ensure this ID does not exist in the seeded data
+
+        // Act
+        var result = await repository.DeleteUserMovieAsync(id);
+
+        // Assert
+        Assert.False(result);  // Should be false if the user movie does not exist
+    }
+
+
 }
 
