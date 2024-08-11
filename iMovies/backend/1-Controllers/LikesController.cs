@@ -15,7 +15,7 @@ public class LikesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddLike(LikeDTO likeDTO)
+    public async Task<IActionResult> AddLike(LikeDTORequest likeDTO)
     {
         if (!ModelState.IsValid)
         {
