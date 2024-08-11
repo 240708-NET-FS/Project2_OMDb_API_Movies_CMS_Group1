@@ -5,8 +5,8 @@ namespace OMDbProject.Services.Interfaces;
 
     public interface IAuthService
     {
-        //Task<string> LoginAsync(LoginDTO loginDTO);
         Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO);
         Task LogoutAsync();
+      
     }
 

@@ -15,7 +15,7 @@ namespace OMDbProject.Services;
             _likeRepository = likeRepository;
         }
 
-        public async Task<bool> AddLikeAsync(LikeDTO likeDTO)
+        public async Task<bool> AddLikeAsync(LikeDTORequest likeDTO)
         {
 
              // Check if the user is already liking this movie
