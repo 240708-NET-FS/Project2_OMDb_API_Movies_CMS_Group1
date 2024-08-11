@@ -13,70 +13,73 @@ using Microsoft.Extensions.Options;
 
 namespace OMDbProject.Services;
 
-    public class AuthService : IAuthService
-    {
-        private readonly IUserRepository _userRepository;
-        private readonly JwtSettings _jwtSettings;
+public class AuthService : IAuthService
+{
+    private readonly IUserRepository _userRepository;
+    private readonly JwtSettings _jwtSettings;
 
-         public AuthService(IUserRepository userRepository, IOptions<JwtSettings> jwtSettings)
+    public AuthService(IUserRepository userRepository, IOptions<JwtSettings> jwtSettings)
+    {
+        _userRepository = userRepository;
+        _jwtSettings = jwtSettings.Value;
+    }
+
+
+    public async Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO)
+    {
+        // Retrieve the user from the database
+        var user = await _userRepository.GetUserByUserNameAsync(loginDTO.UserName);
+
+
+        if (user == null)
         {
-            _userRepository = userRepository;
-            _jwtSettings = jwtSettings.Value;
+            // User does not exist
+            throw new UnauthorizedAccessException("Invalid username or password.");
         }
 
+        //Output for debugging
+        Console.WriteLine("user.UserName:" + user.UserName);
 
-public async Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO)
-{
-    // Retrieve the user from the database
-    var user = await _userRepository.GetUserByUserNameAsync(loginDTO.UserName);
-    Console.WriteLine("user.UserName:"+ user.UserName);
+        // Retrieve the stored password hash and salt
+        var storedHash = user.PasswordHash;
+        var storedSalt = user.Salt;
 
-    if (user == null)
-    {
-        // User does not exist
-        throw new UnauthorizedAccessException("Invalid username or password.");
-    }
+        Console.WriteLine("storedHash:" + storedHash);
+        Console.WriteLine("storedSalt:" + storedSalt);
 
-    // Retrieve the stored password hash and salt
-    var storedHash = user.PasswordHash;
-    var storedSalt = user.Salt;
-
-    Console.WriteLine("storedHash:" + storedHash);
-    Console.WriteLine("storedSalt:" + storedSalt);
-
-    // Verify the provided password
-    if (!VerifyPassword(loginDTO.Password, storedHash, storedSalt))
-    {
-        // Password does not match
-        throw new UnauthorizedAccessException("Invalid username or password.");
-    }
-
-    //Generate and return JWT token if password is correct
-     var JwtToken = GenerateJwtToken(user);
-
-     return new UserResponseDTO
+        // Verify the provided password
+        if (!VerifyPassword(loginDTO.Password, storedHash, storedSalt))
         {
-            UserId = user.UserId, 
+            // Password does not match
+            throw new UnauthorizedAccessException("Invalid username or password.");
+        }
+
+        //Generate and return JWT token if password is correct
+        var JwtToken = GenerateJwtToken(user);
+
+        return new UserResponseDTO
+        {
+            UserId = user.UserId,
             UserName = user.UserName,
             FirstName = user.FirstName,
             LastName = user.LastName,
             CreatedAt = user.CreatedAt,
-            Token = JwtToken 
+            Token = JwtToken
         };
-}
+    }
 
 
-        public Task LogoutAsync()
-        {
-            
-            //Invalidate the current user's JWT on the client side
-            return Task.CompletedTask;
-        }
+    public Task LogoutAsync()
+    {
+
+        //Invalidate the current user's JWT on the client side
+        return Task.CompletedTask;
+    }
 
 
-    
+
     //Helper Methods
-   
+
     private bool VerifyPassword(string password, string storedHash, string storedSalt)
     {
         byte[] saltBytes = Convert.FromBase64String(storedSalt);
@@ -91,10 +94,10 @@ public async Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO)
     }
 
 
-        private string GenerateJwtToken(User user)
+    private string GenerateJwtToken(User user)
     {
         Console.WriteLine("GenerateJwtToken() is running");
-    
+
         var tokenHandler = new JwtSecurityTokenHandler();
         Console.WriteLine("tokenHandler: " + tokenHandler);
 
@@ -102,19 +105,19 @@ public async Task<UserResponseDTO> LoginAsync(LoginDTO loginDTO)
 
         //GetBytes(): This has to return at least 32 bytes. 
         //And bytes do not necessarily equal number of characters 
-        var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret); 
-    
+        var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+
         Console.WriteLine("key (Base64): " + Convert.ToBase64String(key));
 
         var tokenDescriptor = new SecurityTokenDescriptor
-         {
+        {
             Subject = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, user.UserName),
             }),
-        Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryInMinutes),
-        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-    };
+            Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryInMinutes),
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         Console.WriteLine("token from GenerateJwtToken(): " + token);

@@ -16,12 +16,12 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task<User> GetUserByIdAsync(int userId)
+    public async Task<User?> GetUserByIdAsync(int userId)
     {
         return await _context.Users.FindAsync(userId);
     }
 
-    public async Task<User> GetUserByUserNameAsync(string username)
+    public async Task<User?> GetUserByUserNameAsync(string username)
     {
         return await _context.Users
             .FirstOrDefaultAsync(u => u.UserName == username);
