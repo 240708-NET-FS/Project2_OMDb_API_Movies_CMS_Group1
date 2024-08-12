@@ -113,6 +113,8 @@ const Following = () => {
                         userMovieId={movie.userMovieId}
                         imdbId={movie.omdbId}
                         openModal={openModal}
+                        userReview={movie.userReview}
+                        userRating={movie.userRating}
                       />
                     ))
                   )}

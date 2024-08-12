@@ -16,7 +16,7 @@ const UserProfile = () => {
   const firstname = user?.firstName;
   const lastname = user?.lastName;
   const date = user?.createdAt;
-  const OMDB_API_KEY = "";
+  const OMDB_API_KEY = process.env.VITE_OMDB_API_KEY;
 
   const fetchFavoriteMovies = useCallback(async () => {
     try {

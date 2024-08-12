@@ -3,14 +3,14 @@ import "./moviecard.css";
 import SkeletonCard from '../SkeletonCard/SkeletonCard';
 import { handleLikeToggle } from '../../utils/likeUtils';
 
-const MovieCard = ({ userMovieId, imdbId, openModal }) => {
+const MovieCard = ({ userMovieId, imdbId, openModal, userReview , userRating }) => {
   const [movieDetail, setMovieDetail] = useState(null);
   const [likeId, setLikeId] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const OMDB_API_KEY = "50cb8f2e";
+  const OMDB_API_KEY = process.env.VITE_OMDB_API_KEY;
 
   const getCurrentUser = () => JSON.parse(localStorage.getItem('user'));
 
@@ -57,7 +57,6 @@ const MovieCard = ({ userMovieId, imdbId, openModal }) => {
       } else {
         setIsLiked(false);
       }
-
       setMovieDetail(movieData);
     } catch (error) {
       console.error('Error fetching movie details or likes:', error);
@@ -98,8 +97,8 @@ const MovieCard = ({ userMovieId, imdbId, openModal }) => {
         <h4>{movieDetail.Title}</h4>
         <p className="bold">Year: {movieDetail.Year}</p>
         <p className="bold">Genre: {movieDetail.Genre}</p>
-        <p><strong>Notes:</strong> {movieDetail.userReview}</p>
-        <p><strong>Rating:</strong> {movieDetail.userRating}</p>
+        <p><strong>Review:</strong> {userReview}</p>
+        <p><strong>Rating:</strong> {userRating}</p>
         <p><strong>Likes:</strong> {likeCount}</p>
         <div className="feed-action-buttons">
           <button 

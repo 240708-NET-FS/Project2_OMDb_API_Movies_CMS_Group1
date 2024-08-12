@@ -13,12 +13,12 @@
   display: flex;
   flex-direction: row;
   background-color: var(--palette_orange);
-  background-image: url(./src/images/bg-img.png);
+  background-image: url(./bg-img.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  color: #fff;
+  color: var(--palette_white);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,6 @@
 
 
 .user-profile-username {
-  margin-bottom: 10px;
   font-size: 24px;
 
 }
@@ -54,13 +53,13 @@
 .user-profile-flname {
   margin-bottom: 10px;
   font-size: 20px;
-
+  color: var(--palette_white);
 }
 
 .user-profile-details p {
   margin: 5px 0;
   font-size: 14px;
-  color: rgb(255 255 255 / 80%);
+  color: var(--palette_white);
 }
 
 .user-profile-followers {
