@@ -34,6 +34,10 @@ public class Hasher : IHasher
     }
     public string HashPassword(string password, string salt)
     {
+        if (string.IsNullOrEmpty(salt))
+        {
+            throw new FormatException("Salt cannot be null or empty.");
+        }
         byte[] saltBytes = Convert.FromBase64String(salt);
         using var hmac = new HMACSHA512(saltBytes);
         byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -41,7 +45,7 @@ public class Hasher : IHasher
     }
 
     public bool VerifyPassword(string password, string storedHash, string storedSalt)
-    {
+    {/*
         byte[] saltBytes = Convert.FromBase64String(storedSalt);
         Console.WriteLine("saltBytes: " + saltBytes);
         using var hmac = new HMACSHA512(saltBytes);
@@ -51,7 +55,29 @@ public class Hasher : IHasher
         string computedHashString = Convert.ToBase64String(computedHash);
         Console.WriteLine("computedHashString:" + computedHashString);
         return computedHashString == storedHash;
+        */
+
+        // Handle null or empty salt
+        if (string.IsNullOrEmpty(storedSalt))
+        {
+            throw new ArgumentNullException(nameof(storedSalt), "Salt cannot be null or empty.");
+        }
+
+        // Handle null hash
+        if (storedHash == null)
+        {
+            return false;
+        }
+
+        byte[] saltBytes = Convert.FromBase64String(storedSalt);
+        using var hmac = new HMACSHA512(saltBytes);
+        byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+        string computedHashString = Convert.ToBase64String(computedHash);
+
+        return computedHashString == storedHash;
     }
+
+
 
 
     public string GenerateJwtToken(User user)

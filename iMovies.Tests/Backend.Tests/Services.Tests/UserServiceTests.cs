@@ -178,4 +178,64 @@ public class UserServiceTests
         _mockUserRepository.Verify(repo => repo.GetUserByUserNameAsync(userRegistrationDTO.UserName), Times.Exactly(2));
         _mockUserRepository.Verify(repo => repo.AddUserAsync(It.IsAny<User>()), Times.Once);
     }
+
+
+    [Fact]
+    public async Task RegisterUserAsync_ShouldThrowException_WhenUserNameIsAlreadyTaken()
+    {
+        // Arrange
+        var userRegistrationDTO = new UserRegistrationDTO
+        {
+            UserName = "existingUser",
+            Password = "password",
+            FirstName = "John",
+            LastName = "Doe"
+        };
+
+        // Mock the repository to return a non-null user (username already taken)
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(userRegistrationDTO.UserName))
+            .ReturnsAsync(new User { UserName = userRegistrationDTO.UserName });
+
+        // Act
+        Exception exception = await Record.ExceptionAsync(() => _userService.RegisterUserAsync(userRegistrationDTO));
+
+        // Assert
+        Assert.IsType<Exception>(exception);
+        Assert.Equal("Username is already taken.", exception.Message);
+    }
+
+
+
+    [Fact]
+    public async Task RegisterUserAsync_ShouldThrowException_WhenUserIsNotAddedCorrectly()
+    {
+        // Arrange
+        var userRegistrationDTO = new UserRegistrationDTO
+        {
+            UserName = "newUser",
+            Password = "password",
+            FirstName = "John",
+            LastName = "Doe"
+        };
+
+        // Mock the repository methods
+        _mockHasher.Setup(hasher => hasher.GenerateSalt()).Returns("salt");
+        _mockHasher.Setup(hasher => hasher.HashPassword(userRegistrationDTO.Password, "salt")).Returns("hashedPassword");
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(userRegistrationDTO.UserName)).ReturnsAsync((User)null);
+        _mockUserRepository.Setup(repo => repo.AddUserAsync(It.IsAny<User>())).Returns(Task.CompletedTask);
+        _mockUserRepository.Setup(repo => repo.GetUserByUserNameAsync(userRegistrationDTO.UserName))
+            .ReturnsAsync((User)null); // Simulating user is not added
+
+        // Act
+        Exception exception = await Record.ExceptionAsync(() => _userService.RegisterUserAsync(userRegistrationDTO));
+
+        // Assert
+        Assert.IsType<Exception>(exception);
+        Assert.Equal("User was not added correctly.", exception.Message);
+    }
+
+
+
+
+
 }
