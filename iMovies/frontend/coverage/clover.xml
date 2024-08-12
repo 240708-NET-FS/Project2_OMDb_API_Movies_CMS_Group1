@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1723361644194" clover="3.2.0">
-  <project timestamp="1723361644194" name="All files">
+<coverage generated="1723432192132" clover="3.2.0">
+  <project timestamp="1723432192132" name="All files">
     <metrics statements="647" coveredstatements="218" conditionals="243" coveredconditionals="49" methods="126" coveredmethods="45" elements="1016" coveredelements="312" complexity="0" loc="647" ncloc="647" packages="18" files="21" classes="21"/>
     <package name="src">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="main.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/main.jsx">
+      <file name="main.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/main.jsx">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="15" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.components">
       <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-      <file name="PrivateRoutes.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/PrivateRoutes.jsx">
+      <file name="PrivateRoutes.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/PrivateRoutes.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
@@ -22,7 +22,7 @@
     </package>
     <package name="src.components.Dashboard">
       <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="4" methods="5" coveredmethods="5"/>
-      <file name="DashBoard.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Dashboard/DashBoard.jsx">
+      <file name="DashBoard.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Dashboard/DashBoard.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="7" type="stmt"/>
@@ -34,7 +34,7 @@
     </package>
     <package name="src.components.Header">
       <metrics statements="27" coveredstatements="20" conditionals="12" coveredconditionals="10" methods="7" coveredmethods="4"/>
-      <file name="Header.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Header/Header.jsx">
+      <file name="Header.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Header/Header.jsx">
         <metrics statements="27" coveredstatements="20" conditionals="12" coveredconditionals="10" methods="7" coveredmethods="4"/>
         <line num="7" count="5" type="stmt"/>
         <line num="8" count="5" type="stmt"/>
@@ -67,14 +67,14 @@
     </package>
     <package name="src.components.Layout">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Layout.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Layout/Layout.jsx">
+      <file name="Layout.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/Layout/Layout.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.MovieCard">
       <metrics statements="52" coveredstatements="19" conditionals="18" coveredconditionals="1" methods="7" coveredmethods="3"/>
-      <file name="MovieCard.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/MovieCard/MovieCard.jsx">
+      <file name="MovieCard.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/MovieCard/MovieCard.jsx">
         <metrics statements="52" coveredstatements="19" conditionals="18" coveredconditionals="1" methods="7" coveredmethods="3"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
@@ -132,7 +132,7 @@
     </package>
     <package name="src.components.MovieModal">
       <metrics statements="57" coveredstatements="1" conditionals="25" coveredconditionals="0" methods="10" coveredmethods="0"/>
-      <file name="MovieModal.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/MovieModal/MovieModal.jsx">
+      <file name="MovieModal.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/MovieModal/MovieModal.jsx">
         <metrics statements="57" coveredstatements="1" conditionals="25" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -195,7 +195,7 @@
     </package>
     <package name="src.components.SkeletonCard">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="SkeletonCard.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/SkeletonCard/SkeletonCard.jsx">
+      <file name="SkeletonCard.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/SkeletonCard/SkeletonCard.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="15" type="stmt"/>
@@ -203,7 +203,7 @@
     </package>
     <package name="src.components.UpdateMovieModal">
       <metrics statements="33" coveredstatements="1" conditionals="19" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="UpdateMovieModal.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/UpdateMovieModal/UpdateMovieModal.jsx">
+      <file name="UpdateMovieModal.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/UpdateMovieModal/UpdateMovieModal.jsx">
         <metrics statements="33" coveredstatements="1" conditionals="19" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -242,7 +242,7 @@
     </package>
     <package name="src.components.UserCard">
       <metrics statements="31" coveredstatements="13" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="4"/>
-      <file name="UserCard.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/UserCard/UserCard.jsx">
+      <file name="UserCard.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/components/UserCard/UserCard.jsx">
         <metrics statements="31" coveredstatements="13" conditionals="8" coveredconditionals="1" methods="6" coveredmethods="4"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -279,7 +279,7 @@
     </package>
     <package name="src.pages.AddMovies">
       <metrics statements="53" coveredstatements="26" conditionals="16" coveredconditionals="4" methods="15" coveredmethods="6"/>
-      <file name="AddMovies.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/AddMovies/AddMovies.jsx">
+      <file name="AddMovies.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/AddMovies/AddMovies.jsx">
         <metrics statements="53" coveredstatements="26" conditionals="16" coveredconditionals="4" methods="15" coveredmethods="6"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
@@ -338,7 +338,7 @@
     </package>
     <package name="src.pages.Feed">
       <metrics statements="39" coveredstatements="26" conditionals="13" coveredconditionals="1" methods="12" coveredmethods="5"/>
-      <file name="Feed.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Feed/Feed.jsx">
+      <file name="Feed.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Feed/Feed.jsx">
         <metrics statements="39" coveredstatements="26" conditionals="13" coveredconditionals="1" methods="12" coveredmethods="5"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
@@ -383,7 +383,7 @@
     </package>
     <package name="src.pages.Following">
       <metrics statements="37" coveredstatements="27" conditionals="13" coveredconditionals="4" methods="10" coveredmethods="5"/>
-      <file name="Following.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Following/Following.jsx">
+      <file name="Following.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Following/Following.jsx">
         <metrics statements="37" coveredstatements="27" conditionals="13" coveredconditionals="4" methods="10" coveredmethods="5"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
@@ -426,7 +426,7 @@
     </package>
     <package name="src.pages.Home">
       <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-      <file name="Home.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Home/Home.jsx">
+      <file name="Home.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Home/Home.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="7" count="1" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
@@ -437,7 +437,7 @@
     </package>
     <package name="src.pages.Login">
       <metrics statements="40" coveredstatements="10" conditionals="16" coveredconditionals="3" methods="5" coveredmethods="1"/>
-      <file name="Login.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Login/Login.jsx">
+      <file name="Login.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Login/Login.jsx">
         <metrics statements="40" coveredstatements="10" conditionals="16" coveredconditionals="3" methods="5" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -483,7 +483,7 @@
     </package>
     <package name="src.pages.Signup">
       <metrics statements="51" coveredstatements="11" conditionals="30" coveredconditionals="6" methods="6" coveredmethods="1"/>
-      <file name="SignUp.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Signup/SignUp.jsx">
+      <file name="SignUp.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Signup/SignUp.jsx">
         <metrics statements="51" coveredstatements="11" conditionals="30" coveredconditionals="6" methods="6" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -540,7 +540,7 @@
     </package>
     <package name="src.pages.Userprofile">
       <metrics statements="82" coveredstatements="25" conditionals="27" coveredconditionals="6" methods="17" coveredmethods="3"/>
-      <file name="UserProfile.jsx" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Userprofile/UserProfile.jsx">
+      <file name="UserProfile.jsx" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/pages/Userprofile/UserProfile.jsx">
         <metrics statements="82" coveredstatements="25" conditionals="27" coveredconditionals="6" methods="17" coveredmethods="3"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
@@ -628,7 +628,7 @@
     </package>
     <package name="src.utils">
       <metrics statements="125" coveredstatements="20" conditionals="30" coveredconditionals="1" methods="17" coveredmethods="4"/>
-      <file name="fetchData.js" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/fetchData.js">
+      <file name="fetchData.js" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/fetchData.js">
         <metrics statements="52" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -683,7 +683,7 @@
         <line num="122" count="0" type="stmt"/>
         <line num="123" count="0" type="stmt"/>
       </file>
-      <file name="followUtils.js" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/followUtils.js">
+      <file name="followUtils.js" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/followUtils.js">
         <metrics statements="32" coveredstatements="5" conditionals="8" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -718,7 +718,7 @@
         <line num="55" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
       </file>
-      <file name="jwtUtils.js" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/jwtUtils.js">
+      <file name="jwtUtils.js" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/jwtUtils.js">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -735,7 +735,7 @@
         <line num="23" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
       </file>
-      <file name="likeUtils.js" path="/Users/tomyromero/myOffice/training/project2/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/likeUtils.js">
+      <file name="likeUtils.js" path="/Users/tomyromero/myOffice/training/project2/main/Project2_OMDb_API_Movies_CMS_Group1/iMovies/frontend/src/utils/likeUtils.js">
         <metrics statements="27" coveredstatements="1" conditionals="8" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
