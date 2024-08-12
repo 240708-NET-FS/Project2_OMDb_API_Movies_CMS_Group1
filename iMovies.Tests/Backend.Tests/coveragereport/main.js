@@ -247,9 +247,9 @@ var assemblies = [
       { "name": "OMDbProject.Services.FollowerService", "rp": "backend_FollowerService.html", "cl": 31, "ucl": 0, "cal": 31, "tl": 67, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.LikeService", "rp": "backend_LikeService.html", "cl": 34, "ucl": 0, "cal": 34, "tl": 68, "cb": 4, "tb": 4, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
       { "name": "OMDbProject.Services.RankingService", "rp": "backend_RankingService.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Services.UserMovieService", "rp": "backend_UserMovieService.html", "cl": 47, "ucl": 2, "cal": 49, "tl": 91, "cb": 1, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Services.UserService", "rp": "backend_UserService.html", "cl": 39, "ucl": 3, "cal": 42, "tl": 86, "cb": 4, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
-      { "name": "OMDbProject.Utilities.Hasher", "rp": "backend_Hasher.html", "cl": 49, "ucl": 0, "cal": 49, "tl": 88, "cb": 5, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Services.UserMovieService", "rp": "backend_UserMovieService.html", "cl": 27, "ucl": 22, "cal": 49, "tl": 91, "cb": 2, "tb": 2, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Services.UserService", "rp": "backend_UserService.html", "cl": 42, "ucl": 0, "cal": 42, "tl": 86, "cb": 6, "tb": 6, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
+      { "name": "OMDbProject.Utilities.Hasher", "rp": "backend_Hasher.html", "cl": 54, "ucl": 0, "cal": 54, "tl": 114, "cb": 8, "tb": 10, "cm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
